@@ -8,14 +8,14 @@ import {View,
   TouchableOpacity,} from 'react-native';
 
 
-export default function HomeScreen(props) {
-    console.log("HomeScreen is rendering !!!!")
+export default  StudyingScreen=(props)=> {
+    console.log("StudyingScreen is rendering !!!!")
 	
     return (
-        <View style={{backgroundColor:'red',flex:1}}>
+        <View style={{flex:1}}>
         <SafeAreaView>
-          <Text>
-            HomeScreen
+          <Text style={{fontSize:20, color:'black'}}>
+            StudyingScreen
           </Text>
         </SafeAreaView> 
       </View>

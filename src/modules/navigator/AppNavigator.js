@@ -1,21 +1,62 @@
-import React from 'react'
+import React from 'react';
 
-import { NavigationContainer, StackActions } from '@react-navigation/native'
+import {NavigationContainer, StackActions} from '@react-navigation/native';
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import HomeScreen from '../screens/HomeScreen'
+import HomeScreen from '../screens/HomeScreen';
 
+import AccontScreen from '../screens/AccountScreen';
 
-const Stack = createNativeStackNavigator()
+import MainTabNavigator from './MainTabNavigator';
+import {ScreenNames} from '../../general/constants/ScreenNames';
+import SearchingScreen from '../screens/SearchingScreen';
+import StudyingScreen from '../screens/StudyingScreen';
+import FavouriteScreen from '../screens/FavouriteScreen';
 
-export default AppNavigator = ()=>{
-    return (
-        <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }}/>
-            </Stack.Navigator>
-        </NavigationContainer>
-    )
+const Stack = createNativeStackNavigator();
 
-}
+export default AppNavigator = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Group>
+          <Stack.Screen
+            name={ScreenNames.mainTab}
+            component={MainTabNavigator}
+            options={{headerShown: false}}
+          />
+        </Stack.Group>
+
+        <Stack.Group>
+          <Stack.Screen
+            name={ScreenNames.homeScreen}
+            component={HomeScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name={ScreenNames.searchingScreen}
+            component={SearchingScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name={ScreenNames.studyingScreen}
+            component={StudyingScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name={ScreenNames.favouriteScreen}
+            component={FavouriteScreen}
+            options={{headerShown: false}}
+          />
+
+          <Stack.Screen
+            name={ScreenNames.accountScreen}
+            component={AccontScreen}
+            options={{headerShown: false}}
+          />
+        </Stack.Group>
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};

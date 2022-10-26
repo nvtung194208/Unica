@@ -7,18 +7,10 @@ import StudyingScreen from '../screens/StudyingScreen';
 import FavouriteScreen from '../screens/FavouriteScreen';
 import AccountScreen from '../screens/AccountScreen';
 // const MainTabBarIcons = {
-//     AccountTab: {icon: [AppIcons.discover, AppIcons.discover_selected]},
-//     FavouriteTab: {icon: [AppIcons.add, AppIcons.add]},
-//     StudyTab: {
-//        icon: [AppIcons.notification, AppIcons.notification_selected],
-//     },
-//     SearchTab: {
-//        icon: [AppIcons.settings, AppIcons.settings_selected],
-//      },
 //      HomeTab: {
 //        icon: [AppIcons.news_feed, AppIcons.news_feed_selected],
 //      },
-//    };
+//    }; 
 
 const Tab = createBottomTabNavigator();
 export default function MainTabNavigator(props) {

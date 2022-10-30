@@ -8,7 +8,7 @@ import {View,
   TouchableOpacity,} from 'react-native';
 
 
-export default  StudyingScreen=(props)=> {
+export default function  StudyingScreen(props) {
     console.log("StudyingScreen is rendering !!!!")
 	
     return (

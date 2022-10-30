@@ -8,7 +8,7 @@ import {View,
   TouchableOpacity,} from 'react-native';
 
 
-export default  AccontScreen=(props)=> {
+export default function  AccontScreen(props) {
     console.log("AccountScreen is rendering !!!!")
 	
     return (

@@ -8,7 +8,7 @@ import {View,
   TouchableOpacity,} from 'react-native';
 
 
-export default  FavouriteScreen=(props)=> {
+export default function FavouriteScreen(props) {
     console.log("FavouriteScreen is rendering !!!!")
 	
     return (

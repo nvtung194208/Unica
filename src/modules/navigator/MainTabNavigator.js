@@ -6,52 +6,79 @@ import SearchingScreen from '../screens/SearchingScreen';
 import StudyingScreen from '../screens/StudyingScreen';
 import FavouriteScreen from '../screens/FavouriteScreen';
 import AccountScreen from '../screens/AccountScreen';
-// const MainTabBarIcons = {
-//      HomeTab: {
-//        icon: [AppIcons.news_feed, AppIcons.news_feed_selected],
-//      },
-//    }; 
+import Icon from 'react-native-vector-icons/Ionicons';
+
+import {View, Image} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 export default function MainTabNavigator(props) {
   return (
-    <Tab.Navigator initialRouteName={ScreenNames.homeScreen}>
+    <Tab.Navigator scenceContainerStyle={{backgroundColor: 'black'}}>
       <Tab.Screen
-        name={ScreenNames.homeScreen}
+        name="Trang chủ"
         component={HomeScreen}
         options={{
-          title: 'Trang chủ',
+          tabBarIcon: ({color, focused}) => (
+            <Icon
+              size={25}
+              name={focused ? 'home' : 'home-outline'}
+              color={focused ? '#1877f2' : '#272727'}
+            />
+          ),
         }}
       />
       <Tab.Screen
-        name={ScreenNames.searchingScreen}
+        name="Tìm kiếm"
         component={SearchingScreen}
         options={{
-          title: 'Tìm kiếm',
+          tabBarIcon: ({color, focused}) => (
+            <Icon
+              size={25}
+              name={focused ? 'search' : 'search-outline'}
+              color={focused ? '#1877f2' : '#272727'}
+            />
+          ),
         }}
       />
       <Tab.Screen
-        name={ScreenNames.studyingScreen}
+        name="Vào học"
         component={StudyingScreen}
         options={{
-          title: 'Vào học',
+          tabBarIcon: ({color, focused}) => (
+            <Icon
+              size={25}
+              name={focused ? 'book' : 'book-outline'}
+              color={focused ? '#1877f2' : '#272727'}
+            />
+          ),
         }}
       />
       <Tab.Screen
-        name={ScreenNames.favouriteScreen}
+        name="Yêu thích"
         component={FavouriteScreen}
         options={{
-          title: 'Yêu thích',
+          tabBarIcon: ({color, focused}) => (
+            <Icon
+              size={25}
+              name={focused ? 'heart' : 'heart-outline'}
+              color={focused ? '#1877f2' : '#272727'}
+            />
+          ),
         }}
       />
       <Tab.Screen
-        name={ScreenNames.accountScreen}
+        name="Tài khoản"
         component={AccountScreen}
         options={{
-          title: 'Tài khoản',
+          tabBarIcon: ({color, focused}) => (
+            <Icon
+              size={25}
+              name={focused ? 'person' : 'person-outline'}
+              color={focused ? '#1877f2' : '#272727'}
+            />
+          ),
         }}
       />
-      
     </Tab.Navigator>
   );
 }

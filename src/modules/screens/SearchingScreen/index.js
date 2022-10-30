@@ -8,7 +8,7 @@ import {View,
   TouchableOpacity,} from 'react-native';
 
 
-export default  SearchingScreen=(props)=> {
+export default function  SearchingScreen(props) {
     console.log("SearchingScreen is rendering !!!!")
 	
     return (

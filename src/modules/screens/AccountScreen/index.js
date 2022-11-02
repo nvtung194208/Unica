@@ -8,14 +8,14 @@ import {
   StatusBar,
   TouchableOpacity,
 } from 'react-native';
-
+import AccountTabNavigator from '../../navigator/AccountTabNavigator';
 export default function AccontScreen(props) {
   console.log('AccountScreen is rendering !!!!');
 
   return (
     <View style={{flex: 1}}>
       <SafeAreaView>
-        <Text style={{fontSize: 20, color: 'black'}}>AccountScreen</Text>
+        <AccountTabNavigator />
       </SafeAreaView>
     </View>
   );

@@ -64,6 +64,7 @@ export default function MainTabNavigator(props) {
               color={focused ? '#1877f2' : '#272727'}
             />
           ),
+          // headerShown: false,
         }}
       />
       <Tab.Screen

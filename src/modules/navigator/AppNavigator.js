@@ -13,6 +13,8 @@ import {ScreenNames} from '../../general/constants/ScreenNames';
 import SearchingScreen from '../screens/SearchingScreen';
 import StudyingScreen from '../screens/StudyingScreen';
 import FavouriteScreen from '../screens/FavouriteScreen';
+import AccountScreen from '../screens/AccountScreen';
+import UpdateProfileView from '../views/UpdateProfileView';
 
 const Stack = createNativeStackNavigator();
 
@@ -52,8 +54,15 @@ export default AppNavigator = () => {
 
           <Stack.Screen
             name={ScreenNames.accountScreen}
-            component={AccontScreen}
+            component={AccountScreen}
             options={{headerShown: false}}
+          />
+        </Stack.Group>
+
+        <Stack.Group screenOptions={{presentation: 'modal'}}>
+          <Stack.Screen
+            name="Update Profile View"
+            component={UpdateProfileView}
           />
         </Stack.Group>
       </Stack.Navigator>

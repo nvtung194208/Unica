@@ -9,8 +9,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {ScreenNames} from '../../../general/constants/ScreenNames';
-import AccountTabNavigator from '../../navigator/AccountTabNavigator';
-export default function AccontScreen({navigation}) {
+import {styles} from './style';
+import Icon from 'react-native-vector-icons/AntDesign';
+export default AccontScreen = ({navigation}) => {
   console.log('AccountScreen is rendering !!!!');
 
   return (
@@ -18,66 +19,60 @@ export default function AccontScreen({navigation}) {
       <SafeAreaView>
         <View style={{flex: 1}}>
           <SafeAreaView>
-            <Text style={{fontSize: 20, color: 'black'}}>AccountScreen</Text>
-
-            <View>
+            <View style={styles.tab_container}>
               <TouchableOpacity
-                style={{height: 40}}
+                style={styles.tab}
                 onPress={() => {
                   navigation.navigate(ScreenNames.updateProfileView);
                 }}
               >
-                <Text style={{fontSize: 14, color: 'black'}}>
-                  Cập nhật hồ sơ
-                </Text>
+                <Text style={styles.text}>Cập nhật hồ sơ</Text>
+                <Icon name="right" style={styles.icon} />
               </TouchableOpacity>
               <TouchableOpacity
-                style={{height: 40}}
+                style={styles.tab}
                 onPress={() => {
                   navigation.navigate(ScreenNames.changePasswordView);
                 }}
               >
-                <Text style={{fontSize: 14, color: 'black'}}>Đổi mật khẩu</Text>
+                <Text style={styles.text}>Đổi mật khẩu</Text>
+                <Icon name="right" style={styles.icon} />
               </TouchableOpacity>
               <TouchableOpacity
-                style={{height: 40}}
+                style={styles.tab}
                 onPress={() => {
                   navigation.navigate(ScreenNames.notificationView);
                 }}
               >
-                <Text style={{fontSize: 14, color: 'black'}}>
-                  Hộp thư thông báo
-                </Text>
+                <Text style={styles.text}>Hộp thư thông báo</Text>
+                <Icon name="right" style={styles.icon} />
               </TouchableOpacity>
               <TouchableOpacity
-                style={{height: 40}}
+                style={styles.tab}
                 onPress={() => {
                   navigation.navigate(ScreenNames.studyPathView);
                 }}
               >
-                <Text style={{fontSize: 14, color: 'black'}}>
-                  Lộ trình học tập
-                </Text>
+                <Text style={styles.text}>Lộ trình học tập</Text>
+                <Icon name="right" style={styles.icon} />
               </TouchableOpacity>
               <TouchableOpacity
-                style={{height: 40}}
+                style={styles.tab}
                 onPress={() => {
                   navigation.navigate(ScreenNames.customerSupportView);
                 }}
               >
-                <Text style={{fontSize: 14, color: 'black'}}>
-                  Hỗ trợ khách hàng
-                </Text>
+                <Text style={styles.text}>Hỗ trợ khách hàng</Text>
+                <Icon name="right" style={styles.icon} />
               </TouchableOpacity>
               <TouchableOpacity
-                style={{height: 40}}
+                style={styles.tab}
                 onPress={() => {
                   navigation.navigate(ScreenNames.rateAppView);
                 }}
               >
-                <Text style={{fontSize: 14, color: 'black'}}>
-                  Đánh giá ứng dụng
-                </Text>
+                <Text style={styles.text}>Đánh giá ứng dụng</Text>
+                <Icon name="right" style={styles.icon} />
               </TouchableOpacity>
             </View>
           </SafeAreaView>
@@ -85,4 +80,4 @@ export default function AccontScreen({navigation}) {
       </SafeAreaView>
     </View>
   );
-}
+};

@@ -7,13 +7,19 @@ import StudyingScreen from '../screens/StudyingScreen';
 import FavouriteScreen from '../screens/FavouriteScreen';
 import AccountScreen from '../screens/AccountScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {KeyboardAvoidingView} from 'react-native';
 
 import {View, Image} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 export default function MainTabNavigator(props) {
   return (
-    <Tab.Navigator scenceContainerStyle={{backgroundColor: 'black'}}>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+      scenceContainerStyle={{backgroundColor: 'black'}}
+    >
       <Tab.Screen
         name="Trang chủ"
         component={HomeScreen}
@@ -38,6 +44,7 @@ export default function MainTabNavigator(props) {
               color={focused ? '#1877f2' : '#272727'}
             />
           ),
+          tabBarHideOnKeyboard: true,
         }}
       />
       <Tab.Screen

@@ -3,26 +3,13 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {styles} from './style';
 
-export default function CategorySheet() {
+export default function CategoryList() {
   //constants
-  const iconSize = 25;
+  const iconSize = 20;
 
   return (
     <View>
-      <Text style={styles.text_bold}>
-        Bạn chưa tìm thấy khoá học mình quan tâm ?
-      </Text>
-      <Text style={styles.text_bold}>
-        Unica có hơn 2.000 khoá học đang chờ bạn khám phá
-      </Text>
-
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-        }}
-      >
+      <View style={{}}>
         <View style={styles.category_container}>
           <TouchableOpacity style={styles.category_box}>
             <Icon
@@ -58,7 +45,7 @@ export default function CategorySheet() {
               color="black"
               style={styles.icon}
             />
-            <Text style={styles.text}>Phong cách{'\n'}sống</Text>
+            <Text style={styles.text}>Phong cách sống</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.category_container}>
@@ -87,7 +74,7 @@ export default function CategorySheet() {
               color="black"
               style={styles.icon}
             />
-            <Text style={styles.text}>Công nghệ thông{'\n'}tin</Text>
+            <Text style={styles.text}>Công nghệ thông tin</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.category_box}>
             <Icon
@@ -107,7 +94,7 @@ export default function CategorySheet() {
               color="black"
               style={styles.icon}
             />
-            <Text style={styles.text}>Tin học văn{'\n'}phòng</Text>
+            <Text style={styles.text}>Tin học văn phòng</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.category_box}>
             <Icon
@@ -116,7 +103,7 @@ export default function CategorySheet() {
               color="black"
               style={styles.icon}
             />
-            <Text style={styles.text}>Phát triển cá{'\n'}nhân</Text>
+            <Text style={styles.text}>Phát triển cá nhân</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.category_box}>
             <Icon
@@ -125,7 +112,7 @@ export default function CategorySheet() {
               color="black"
               style={styles.icon}
             />
-            <Text style={styles.text}>Sức khoẻ - Giới{'\n'}tính</Text>
+            <Text style={styles.text}>Sức khoẻ - Giới tính</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.category_box}>
             <Icon
@@ -134,7 +121,7 @@ export default function CategorySheet() {
               color="black"
               style={styles.icon}
             />
-            <Text style={styles.text}>Hôn nhân - gia{'\n'}đình</Text>
+            <Text style={styles.text}>Hôn nhân - gia đình</Text>
           </TouchableOpacity>
         </View>
       </View>

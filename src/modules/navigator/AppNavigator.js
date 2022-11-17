@@ -27,7 +27,11 @@ const Stack = createNativeStackNavigator();
 export default AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
         <Stack.Group>
           <Stack.Screen
             name={ScreenNames.mainTab}
@@ -85,6 +89,7 @@ export default AppNavigator = () => {
           <Stack.Screen
             name={ScreenNames.customerSupportView}
             component={CustomerSupportView}
+            option={{headerShown: false}}
           />
           <Stack.Screen
             name={ScreenNames.rateAppView}

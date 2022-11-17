@@ -66,7 +66,7 @@ export default function AccontScreen({navigation}) {
                 }}
               >
                 <Text style={{fontSize: 14, color: 'black'}}>
-                  Hỗ trợ khách hàng kkkkk
+                  Hỗ trợ khách hàng
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity

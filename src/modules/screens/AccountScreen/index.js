@@ -62,8 +62,14 @@ export default AccontScreen = ({navigation}) => {
                   navigation.navigate(ScreenNames.customerSupportView);
                 }}
               >
+<<<<<<< HEAD
                 <Text style={styles.text}>Hỗ trợ khách hàng</Text>
                 <Icon name="right" style={styles.icon} />
+=======
+                <Text style={{fontSize: 14, color: 'black'}}>
+                  Hỗ trợ khách hàng kkkkk
+                </Text>
+>>>>>>> adee7fdef745c3bdba7e19e33bbb8ea433c2ae22
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.tab}

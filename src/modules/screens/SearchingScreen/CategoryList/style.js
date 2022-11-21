@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
+    bottom: 0,
   },
 
   text: {
@@ -24,17 +25,16 @@ export const styles = StyleSheet.create({
   },
 
   icon: {
-    alignSelf: 'center',
-    marginLeft: 25,
-    width: 40,
     justifyContent: 'center',
     alignSelf: 'center',
+    // backgroundColor: 'yellow',
   },
 
   text_bold: {
     fontSize: 14,
     fontWeight: 'bold',
-    textAlign: 'center',
+    marginLeft: 20,
+
     color: 'black',
   },
 });

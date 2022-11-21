@@ -2,8 +2,9 @@ import {View, Text, TouchableOpacity} from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {styles} from './style';
-
-export default function CategorySheet() {
+import {Category} from '../../../../general/constants/Category';
+import {ScreenNames} from '../../../../general/constants/ScreenNames';
+export default function CategorySheet(props) {
   //constants
   const iconSize = 25;
 
@@ -16,127 +17,24 @@ export default function CategorySheet() {
         Unica có hơn 2.000 khoá học đang chờ bạn khám phá
       </Text>
 
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-        }}
-      >
-        <View style={styles.category_container}>
-          <TouchableOpacity style={styles.category_box}>
+      <View style={styles.category_container}>
+        {Category.map(category => (
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate(ScreenNames.categoryView);
+            }}
+            key={category.id}
+            style={styles.category_box}
+          >
             <Icon
-              name="language"
+              name={category.icon}
               size={iconSize}
               color="black"
               style={styles.icon}
             />
-            <Text style={styles.text}>Ngoại ngữ</Text>
+            <Text style={styles.text}>{category.title}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.category_box}>
-            <Icon
-              name="paint-brush"
-              size={iconSize}
-              color="black"
-              style={styles.icon}
-            />
-            <Text style={styles.text}>Thiết kế</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.category_box}>
-            <Icon
-              name="shopping-cart"
-              size={iconSize}
-              color="black"
-              style={styles.icon}
-            />
-            <Text style={styles.text}>Sales, bán hàng</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.category_box}>
-            <Icon
-              name="utensils"
-              size={iconSize}
-              color="black"
-              style={styles.icon}
-            />
-            <Text style={styles.text}>Phong cách{'\n'}sống</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.category_container}>
-          <TouchableOpacity style={styles.category_box}>
-            <Icon
-              name="chart-line"
-              size={iconSize}
-              color="black"
-              style={styles.icon}
-            />
-            <Text style={styles.text}>Marketing</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.category_box}>
-            <Icon
-              name="rocket"
-              size={iconSize}
-              color="black"
-              style={styles.icon}
-            />
-            <Text style={styles.text}>Kinh doanh- khởi nghiệp</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.category_box}>
-            <Icon
-              name="code"
-              size={iconSize}
-              color="black"
-              style={styles.icon}
-            />
-            <Text style={styles.text}>Công nghệ thông{'\n'}tin</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.category_box}>
-            <Icon
-              name="child"
-              size={iconSize}
-              color="black"
-              style={styles.icon}
-            />
-            <Text style={styles.text}>Nuôi dạy con</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.category_container}>
-          <TouchableOpacity style={styles.category_box}>
-            <Icon
-              name="laptop"
-              size={iconSize}
-              color="black"
-              style={styles.icon}
-            />
-            <Text style={styles.text}>Tin học văn{'\n'}phòng</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.category_box}>
-            <Icon
-              name="lightbulb"
-              size={iconSize}
-              color="black"
-              style={styles.icon}
-            />
-            <Text style={styles.text}>Phát triển cá{'\n'}nhân</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.category_box}>
-            <Icon
-              name="heartbeat"
-              size={iconSize}
-              color="black"
-              style={styles.icon}
-            />
-            <Text style={styles.text}>Sức khoẻ - Giới{'\n'}tính</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.category_box}>
-            <Icon
-              name="house-user"
-              size={iconSize}
-              color="black"
-              style={styles.icon}
-            />
-            <Text style={styles.text}>Hôn nhân - gia{'\n'}đình</Text>
-          </TouchableOpacity>
-        </View>
+        ))}
       </View>
     </View>
   );

@@ -6,8 +6,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import HomeScreen from '../screens/HomeScreen';
 
-import AccontScreen from '../screens/AccountScreen';
-
 import MainTabNavigator from './MainTabNavigator';
 import {ScreenNames} from '../../general/constants/ScreenNames';
 import SearchingScreen from '../screens/SearchingScreen';
@@ -21,6 +19,8 @@ import NotificationView from '../views/NotificationView';
 import StudyPathView from '../views/StudyPathView';
 import CustomerSupportView from '../views/CustomerSupportView';
 import RateAppView from '../views/RateAppView';
+//
+import CategoryView from '../views/CategoryView';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,7 +39,6 @@ export default AppNavigator = () => {
             options={{headerShown: false}}
           />
         </Stack.Group>
-
         <Stack.Group>
           <Stack.Screen
             name={ScreenNames.homeScreen}
@@ -94,6 +93,11 @@ export default AppNavigator = () => {
           <Stack.Screen
             name={ScreenNames.rateAppView}
             component={RateAppView}
+          />
+
+          <Stack.Screen
+            name={ScreenNames.categoryView}
+            component={CategoryView}
           />
         </Stack.Group>
       </Stack.Navigator>

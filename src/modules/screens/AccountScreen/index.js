@@ -11,7 +11,7 @@ import {
 import {ScreenNames} from '../../../general/constants/ScreenNames';
 import {styles} from './style';
 import Icon from 'react-native-vector-icons/AntDesign';
-export default AccontScreen = ({navigation}) => {
+export default AccountScreen = ({navigation}) => {
   console.log('AccountScreen is rendering !!!!');
 
   return (

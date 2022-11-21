@@ -2,17 +2,20 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   category_container: {
-    width: 110,
+    width: '100%',
     display: 'flex',
-    // backgroundColor: 'green',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
 
   category_box: {
     backgroundColor: '#d4d2d2',
     width: 110,
     height: 100,
-    marginTop: 30,
+    marginTop: 20,
     justifyContent: 'center',
+    marginHorizontal: 10,
   },
 
   text: {

@@ -14,11 +14,9 @@ export default function HomeScreen({navigation}) {
   console.log('HomeScreen is rendering !!!!');
 
   return (
-    <View style={{flex: 1}}>
-      <SafeAreaView>
-        <Text style={{fontSize: 20, color: 'black'}}>HomeScreen</Text>
-        <CategorySheet navigation={navigation} />
-      </SafeAreaView>
-    </View>
+    <SafeAreaView>
+      <Text style={{fontSize: 20, color: 'black'}}>HomeScreen</Text>
+      <CategorySheet navigation={navigation} />
+    </SafeAreaView>
   );
 }

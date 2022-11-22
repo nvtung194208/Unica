@@ -3,8 +3,8 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {styles} from './style';
 import {Category} from '../../../../general/constants/Category';
-
-export default function CategoryList() {
+import {ScreenNames} from '../../../../general/constants/ScreenNames';
+export default function CategoryList(props) {
   //constants
   const iconSize = 20;
 
@@ -13,7 +13,15 @@ export default function CategoryList() {
       <Text style={styles.text_bold}>Danh mục khoá học</Text>
       <View style={styles.category_container}>
         {Category.map(category => (
-          <TouchableOpacity key={category.id} style={styles.category_box}>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate(ScreenNames.categoryView, {
+                title: category.title,
+              });
+            }}
+            key={category.id}
+            style={styles.category_box}
+          >
             <View
               style={{
                 width: 65,

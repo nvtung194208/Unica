@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {styles} from './style';
 import {Category} from '../../../../general/constants/Category';
 import {ScreenNames} from '../../../../general/constants/ScreenNames';
-export default function CategorySheet(props) {
+export default function CategorySheet(props, navigation) {
   //constants
   const iconSize = 25;
 
@@ -21,7 +21,9 @@ export default function CategorySheet(props) {
         {Category.map(category => (
           <TouchableOpacity
             onPress={() => {
-              props.navigation.navigate(ScreenNames.categoryView);
+              props.navigation.navigate(ScreenNames.categoryView, {
+                title: category.title,
+              });
             }}
             key={category.id}
             style={styles.category_box}

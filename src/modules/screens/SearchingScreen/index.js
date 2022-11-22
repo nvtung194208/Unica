@@ -11,15 +11,13 @@ import {
 import CategoryList from './CategoryList';
 import SearchBarComponent from './SearchBarComponent';
 
-export default function SearchingScreen(props) {
+export default function SearchingScreen({navigation}) {
   console.log('SearchingScreen is rendering !!!!');
 
   return (
-    <View style={{flex: 1}}>
-      <SafeAreaView>
-        <SearchBarComponent />
-        <CategoryList />
-      </SafeAreaView>
-    </View>
+    <SafeAreaView>
+      <SearchBarComponent />
+      <CategoryList navigation={navigation} />
+    </SafeAreaView>
   );
 }

@@ -15,7 +15,7 @@ export default AccountScreen = ({navigation}) => {
   console.log('AccountScreen is rendering !!!!');
 
   return (
-    <View style={{flex: 1}}>
+   
       <SafeAreaView>
         <View style={{flex: 1}}>
           <SafeAreaView>
@@ -78,6 +78,6 @@ export default AccountScreen = ({navigation}) => {
           </SafeAreaView>
         </View>
       </SafeAreaView>
-    </View>
+   
   );
 };

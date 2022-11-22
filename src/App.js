@@ -1,12 +1,13 @@
-import React, { Component } from "react"
-import AppNavigator from "./modules/navigator/AppNavigator"
-
-
+import React, {Component} from 'react';
+import {StatusBar, SafeAreaView} from 'react-native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import AppNavigator from './modules/navigator/AppNavigator';
 function App() {
-	return (
-		
-			<AppNavigator />
-		
-	)
+  return (
+    <SafeAreaProvider>
+      <StatusBar animated={true} barStyle="default" />
+      <AppNavigator />
+    </SafeAreaProvider>
+  );
 }
-export default App
+export default App;

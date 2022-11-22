@@ -10,15 +10,12 @@ import {
 } from 'react-native';
 import CategorySheet from './CategorySheet';
 
-export default function HomeScreen(props) {
+export default function HomeScreen({navigation}) {
   console.log('HomeScreen is rendering !!!!');
 
   return (
-    <View style={{flex: 1}}>
-      <SafeAreaView>
-        <Text style={{fontSize: 20, color: 'black'}}>HomeScreen</Text>
-        <CategorySheet />
-      </SafeAreaView>
-    </View>
+    <SafeAreaView>
+      <CategorySheet navigation={navigation} />
+    </SafeAreaView>
   );
 }

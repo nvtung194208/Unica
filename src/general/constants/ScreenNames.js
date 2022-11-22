@@ -14,4 +14,8 @@ export const ScreenNames = {
   rateAppView: 'RateAppView',
   studyPathView: 'StudyPathView',
   updateProfileView: 'UpdateProfileView',
+
+  // category
+
+  categoryView: 'CategoryView',
 };

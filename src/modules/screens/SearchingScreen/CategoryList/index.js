@@ -4,19 +4,13 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {styles} from './style';
 import {Category} from '../../../../general/constants/Category';
 import {ScreenNames} from '../../../../general/constants/ScreenNames';
-export default function CategorySheet(props, navigation) {
+export default function CategoryList(props) {
   //constants
-  const iconSize = 25;
+  const iconSize = 20;
 
   return (
-    <View style={{marginTop: 20}}>
-      <Text style={styles.text_bold}>
-        Bạn chưa tìm thấy khoá học mình quan tâm ?
-      </Text>
-      <Text style={styles.text_bold}>
-        Unica có hơn 2.000 khoá học đang chờ bạn khám phá
-      </Text>
-
+    <>
+      <Text style={styles.text_bold}>Danh mục khoá học</Text>
       <View style={styles.category_container}>
         {Category.map(category => (
           <TouchableOpacity
@@ -28,16 +22,26 @@ export default function CategorySheet(props, navigation) {
             key={category.id}
             style={styles.category_box}
           >
-            <Icon
-              name={category.icon}
-              size={iconSize}
-              color="black"
-              style={styles.icon}
-            />
+            <View
+              style={{
+                width: 65,
+                // backgroundColor: 'red',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Icon
+                name={category.icon}
+                size={iconSize}
+                color="black"
+                style={styles.icon}
+              />
+            </View>
+
             <Text style={styles.text}>{category.title}</Text>
           </TouchableOpacity>
         ))}
       </View>
-    </View>
+    </>
   );
 }

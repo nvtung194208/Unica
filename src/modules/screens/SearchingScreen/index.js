@@ -1,25 +1,23 @@
-import React, { Component, useEffect, useState } from "react";
-import {View,
+import React, {Component, useEffect, useState} from 'react';
+import {
+  View,
   SafeAreaView,
   Text,
   ImageBackground,
   StyleSheet,
   StatusBar,
-  TouchableOpacity,} from 'react-native';
+  TouchableOpacity,
+} from 'react-native';
+import CategoryList from './CategoryList';
+import SearchBarComponent from './SearchBarComponent';
 
+export default function SearchingScreen({navigation}) {
+  console.log('SearchingScreen is rendering !!!!');
 
-export default function  SearchingScreen(props) {
-    console.log("SearchingScreen is rendering !!!!")
-	
-    return (
-        <View style={{flex:1}}>
-        <SafeAreaView>
-          <Text style={{fontSize:20, color:'black'}}>
-            SearchingScreen
-          </Text>
-        </SafeAreaView> 
-      </View>
-    );
-
-    
+  return (
+    <SafeAreaView>
+      <SearchBarComponent />
+      <CategoryList navigation={navigation} />
+    </SafeAreaView>
+  );
 }

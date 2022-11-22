@@ -5,11 +5,7 @@ import AppNavigator from './modules/navigator/AppNavigator';
 function App() {
   return (
     <SafeAreaProvider>
-      <StatusBar
-        animated={true}
-        backgroundColor="black"
-        barStyle="dark-content"
-      />
+      <StatusBar animated={true} barStyle="default" />
       <AppNavigator />
     </SafeAreaProvider>
   );

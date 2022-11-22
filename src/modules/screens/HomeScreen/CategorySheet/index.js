@@ -9,7 +9,7 @@ export default function CategorySheet(props, navigation) {
   const iconSize = 25;
 
   return (
-    <View>
+    <View style={{marginTop: 20}}>
       <Text style={styles.text_bold}>
         Bạn chưa tìm thấy khoá học mình quan tâm ?
       </Text>

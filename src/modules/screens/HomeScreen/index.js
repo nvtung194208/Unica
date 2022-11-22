@@ -15,7 +15,6 @@ export default function HomeScreen({navigation}) {
 
   return (
     <SafeAreaView>
-      <Text style={{fontSize: 20, color: 'black'}}>HomeScreen</Text>
       <CategorySheet navigation={navigation} />
     </SafeAreaView>
   );

@@ -5,6 +5,10 @@ import {images} from '../../../assets/images';
 import {Rating, AirbnbRating} from 'react-native-ratings';
 import {ScreenNames} from '../../../general/constants/ScreenNames';
 export default function CourseBox(props) {
+  function numberWithDots(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
   return (
     <TouchableOpacity
       onPress={() => {
@@ -41,7 +45,7 @@ export default function CourseBox(props) {
           />
         </View>
         <View style={{flex: 1}}>
-          <Text style={styles.price}>{props.price}₫</Text>
+          <Text style={styles.price}>{numberWithDots(props.price)}₫</Text>
         </View>
       </View>
     </TouchableOpacity>

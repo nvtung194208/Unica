@@ -9,14 +9,13 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import CategorySheet from './CategorySheet';
-import ViewedCourse from './ViewedCourse';
-
+import ListCourse from './ListCourse';
 export default function HomeScreen({navigation}) {
   console.log('HomeScreen is rendering !!!!');
 
   return (
     <SafeAreaView>
-      <ViewedCourse />
+      <ListCourse type="Khoá học đã xem" />
       <CategorySheet navigation={navigation} />
     </SafeAreaView>
   );

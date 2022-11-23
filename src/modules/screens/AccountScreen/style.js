@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   tab_container: {
     width: '100%',
-    marginTop: 75,
+    marginTop: 45,
     alignItems: 'center',
   },
   tab: {

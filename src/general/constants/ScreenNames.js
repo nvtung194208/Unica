@@ -18,4 +18,6 @@ export const ScreenNames = {
   // category
 
   categoryView: 'CategoryView',
+
+  courseView: 'CourseView',
 };

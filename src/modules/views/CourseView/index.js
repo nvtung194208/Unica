@@ -1,7 +1,7 @@
 import {View, Text, Button, TouchableOpacity} from 'react-native';
 import {styles} from './style';
 import Icon from 'react-native-vector-icons/Octicons';
-export default function CategoryView({navigation, route}) {
+export default function CourseView({navigation, route}) {
   const {title} = route.params;
 
   return (

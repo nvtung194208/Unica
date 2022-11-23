@@ -21,6 +21,7 @@ import CustomerSupportView from '../views/CustomerSupportView';
 import RateAppView from '../views/RateAppView';
 //
 import CategoryView from '../views/CategoryView';
+import CourseView from '../views/CourseView';
 
 const Stack = createNativeStackNavigator();
 
@@ -68,7 +69,9 @@ export default AppNavigator = () => {
           />
         </Stack.Group>
 
-        <Stack.Group screenOptions={{presentation: 'modal'}}>
+        <Stack.Group
+          screenOptions={{presentation: 'modal', animation: 'slide_from_right'}}
+        >
           <Stack.Screen
             name={ScreenNames.updateProfileView}
             component={UpdateProfileView}
@@ -99,6 +102,7 @@ export default AppNavigator = () => {
             name={ScreenNames.categoryView}
             component={CategoryView}
           />
+          <Stack.Screen name={ScreenNames.courseView} component={CourseView} />
         </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>

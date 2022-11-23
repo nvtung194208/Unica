@@ -2,10 +2,9 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    width: 155,
+    width: 160,
     height: 200,
-    borderWidth: 1,
-    borderColor: '#d4d2d2',
+
     borderRadius: 10,
     margin: 10,
     display: 'flex',
@@ -17,7 +16,7 @@ export const styles = StyleSheet.create({
   },
   image: {
     height: 100,
-    width: 153,
+    width: 160,
     resizeMode: 'stretch',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
@@ -29,5 +28,14 @@ export const styles = StyleSheet.create({
   },
   rate: {
     backgroundColor: 'red',
+  },
+  info_container: {
+    flex: 1,
+    borderColor: '#d4d2d2',
+    borderBottomWidth: 1,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
 });

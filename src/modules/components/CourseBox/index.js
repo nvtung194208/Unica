@@ -3,16 +3,25 @@ import {styles} from './style';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
 import {images} from '../../../assets/images';
 import {Rating, AirbnbRating} from 'react-native-ratings';
-
+import {ScreenNames} from '../../../general/constants/ScreenNames';
 export default function CourseBox(props) {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      onPress={() => {
+        props.navigation.navigate(ScreenNames.courseView, {
+          title: props.title,
+        });
+      }}
+      style={styles.container}
+    >
       <View style={{flex: 1}}>
-        <Image style={styles.image} source={images.course_image} />
+        <Image style={styles.image} source={props.image} />
       </View>
-      <View style={{flex: 1}}>
-        <View style={{flex: 2, justifyContent: 'center'}}>
-          <Text style={styles.title}>{props.title}</Text>
+      <View style={styles.info_container}>
+        <View style={{flex: 2, justifyContent: 'center', width: '90%'}}>
+          <Text numberOfLines={2} style={styles.title}>
+            {props.title}
+          </Text>
         </View>
         <View
           style={{

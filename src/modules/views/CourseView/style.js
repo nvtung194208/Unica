@@ -36,4 +36,12 @@ export const styles = StyleSheet.create({
     marginRight: 75,
     alignItems: 'center',
   },
+
+  courses_container: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
 });

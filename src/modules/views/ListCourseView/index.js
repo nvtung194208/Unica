@@ -1,6 +1,7 @@
 import {View, Text, Button, TouchableOpacity} from 'react-native';
 import {styles} from './style';
 import Icon from 'react-native-vector-icons/Octicons';
+import {TestCourses} from '../../../general/constants/TestCourses';
 export default function CategoryView({navigation, route}) {
   const {title} = route.params;
 
@@ -19,6 +20,7 @@ export default function CategoryView({navigation, route}) {
           </Text>
         </View>
       </View>
+      <View style={styles.courses_container}>{TestCourses.map({course})}</View>
     </View>
   );
 }

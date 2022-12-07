@@ -1,9 +1,10 @@
 import {View, Text, Button} from 'react-native';
+import AppHeader from '../../components/AppHeader';
+
 export default function ChangePasswordView({navigation}) {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text style={{fontSize: 30}}>Change Password View!</Text>
-      <Button onPress={() => navigation.goBack()} title="Dismiss" />
+    <View>
+      <AppHeader navigation={navigation} text="Đổi mật khẩu" />
     </View>
   );
 }

@@ -3,7 +3,6 @@ import React from 'react';
 import {NavigationContainer, StackActions} from '@react-navigation/native';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
 import HomeScreen from '../screens/HomeScreen';
 
 import MainTabNavigator from './MainTabNavigator';
@@ -22,6 +21,7 @@ import RateAppView from '../views/RateAppView';
 //
 import CategoryView from '../views/CategoryView';
 import CourseView from '../views/CourseView';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,34 +40,6 @@ export default AppNavigator = () => {
             options={{headerShown: false}}
           />
         </Stack.Group>
-        <Stack.Group>
-          <Stack.Screen
-            name={ScreenNames.homeScreen}
-            component={HomeScreen}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name={ScreenNames.searchingScreen}
-            component={SearchingScreen}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name={ScreenNames.studyingScreen}
-            component={StudyingScreen}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name={ScreenNames.favouriteScreen}
-            component={FavouriteScreen}
-            options={{headerShown: false}}
-          />
-
-          <Stack.Screen
-            name={ScreenNames.accountScreen}
-            component={AccountScreen}
-            options={{headerShown: false}}
-          />
-        </Stack.Group>
 
         <Stack.Group
           screenOptions={{presentation: 'modal', animation: 'slide_from_right'}}
@@ -75,6 +47,7 @@ export default AppNavigator = () => {
           <Stack.Screen
             name={ScreenNames.updateProfileView}
             component={UpdateProfileView}
+            headerShown={true}
           />
           <Stack.Screen
             name={ScreenNames.changePasswordView}
@@ -91,7 +64,6 @@ export default AppNavigator = () => {
           <Stack.Screen
             name={ScreenNames.customerSupportView}
             component={CustomerSupportView}
-            option={{headerShown: false}}
           />
           <Stack.Screen
             name={ScreenNames.rateAppView}

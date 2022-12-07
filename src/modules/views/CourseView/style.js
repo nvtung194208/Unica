@@ -33,15 +33,18 @@ export const styles = StyleSheet.create({
     height: 50,
 
     justifyContent: 'center',
-    marginRight: 75,
+
     alignItems: 'center',
   },
-
-  courses_container: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+  right_icon_container: {
+    width: 75,
   },
+
+  // courses_container: {
+  //   width: '100%',
+  //   display: 'flex',
+  //   flexDirection: 'row',
+  //   flexWrap: 'wrap',
+  //   justifyContent: 'center',
+  // },
 });

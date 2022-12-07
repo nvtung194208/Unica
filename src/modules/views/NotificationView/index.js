@@ -1,9 +1,10 @@
 import {View, Text, Button} from 'react-native';
+import AppHeader from '../../components/AppHeader';
+
 export default function NotificationView({navigation}) {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text style={{fontSize: 30}}>Notification View!</Text>
-      <Button onPress={() => navigation.goBack()} title="Dismiss" />
+    <View>
+      <AppHeader navigation={navigation} text="Thông báo" />
     </View>
   );
 }

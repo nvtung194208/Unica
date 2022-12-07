@@ -21,6 +21,7 @@ export default AccountScreen = ({navigation}) => {
       <View
         style={{
           alignItems: 'center',
+          justifyContent:'center'
         }}
       >
         <View style={styles.header}>
@@ -29,7 +30,7 @@ export default AccountScreen = ({navigation}) => {
         <View style={styles.user_avt}>
           <Image style={styles.image} source={images.test_image} />
         </View>
-        <Text style={{marginTop: 30}}>tunglk27@gmail.com</Text>
+        <Text style={{marginTop: 30, color: 'grey'}}>tunglk27@gmail.com</Text>
         <View style={styles.tab_container}>
           <TouchableOpacity
             style={styles.tab}

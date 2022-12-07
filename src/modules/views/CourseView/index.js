@@ -1,6 +1,7 @@
 import {View, Text, Button, TouchableOpacity} from 'react-native';
 import {styles} from './style';
 import Icon from 'react-native-vector-icons/Ionicons';
+import YouTubePlayer from '../YoutubePlayer';
 
 export default function CourseView({navigation, route}) {
   const {title} = route.params;
@@ -22,6 +23,9 @@ export default function CourseView({navigation, route}) {
         <View style={styles.right_icon_container}>
           <Icon name="cart-outline" style={styles.icon} size={25}></Icon>
         </View>
+      </View>
+      <View style={{height: '100%', width: '100%'}}>
+        <YouTubePlayer />
       </View>
     </View>
   );

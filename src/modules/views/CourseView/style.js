@@ -40,11 +40,35 @@ export const styles = StyleSheet.create({
     width: 75,
   },
 
-  // courses_container: {
-  //   width: '100%',
-  //   display: 'flex',
-  //   flexDirection: 'row',
-  //   flexWrap: 'wrap',
-  //   justifyContent: 'center',
-  // },
+  demo_video: {
+    width: '100%',
+    height: '30%',
+  },
+  course_info: {
+    width: '100%',
+    height: '70%',
+  },
+  price_container: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 20,
+  },
+  price: {
+    color: 'black',
+    fontSize: 26,
+    fontWeight: 'bold',
+  },
+  first_container: {
+    height: 50,
+    justifyContent: 'center',
+  },
+  heart_button: {
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    backgroundColor: '#d4d2d2',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

@@ -10,7 +10,7 @@ export default function DemoYouTubePlayerView(props) {
     <SafeAreaView style={{flex: 1}}>
       <YouTube
         apiKey="AIzaSyC1AVRX9OTeAll2XR5SAqdL3xBngPlcuVE"
-        videoId="m23w8YoZm_s" // The YouTube video ID
+        videoId="mfNWxURTJEA" // The YouTube video ID
         play={false} // control playback of video with true/false
         fullscreen={false} // control whether the video should play in fullscreen or inline
         loop // control whether the video should loop when ended
@@ -18,7 +18,7 @@ export default function DemoYouTubePlayerView(props) {
         onChangeState={e => setStatus(e.state)}
         onChangeQuality={e => setQuality(e.quality)}
         onError={e => setError(e.error)}
-        style={{alignSelf: 'stretch', height: '30%'}}
+        style={{alignSelf: 'stretch', height: '100%'}}
       />
     </SafeAreaView>
   );

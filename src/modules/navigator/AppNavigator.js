@@ -22,6 +22,7 @@ import RateAppView from '../views/RateAppView';
 import CategoryView from '../views/CategoryView';
 import CourseView from '../views/CourseView';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import ListCourseView from '../views/ListCourseView';
 
 const Stack = createNativeStackNavigator();
 
@@ -73,6 +74,10 @@ export default AppNavigator = () => {
           <Stack.Screen
             name={ScreenNames.categoryView}
             component={CategoryView}
+          />
+          <Stack.Screen
+            name={ScreenNames.listCourseView}
+            component={ListCourseView}
           />
           <Stack.Screen name={ScreenNames.courseView} component={CourseView} />
         </Stack.Group>

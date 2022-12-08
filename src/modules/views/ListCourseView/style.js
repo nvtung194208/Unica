@@ -35,4 +35,5 @@ export const styles = StyleSheet.create({
     marginRight: 100,
     alignItems: 'center',
   },
+  courses_container: {},
 });

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import YouTube from 'react-native-youtube';
-export default function YouTubePlayer(props) {
+export default function DemoYouTubePlayerView(props) {
   const [isReady, setIsReady] = useState(false);
   const [status, setStatus] = useState(null);
   const [quality, setQuality] = useState(null);
@@ -10,7 +10,7 @@ export default function YouTubePlayer(props) {
     <SafeAreaView style={{flex: 1}}>
       <YouTube
         apiKey="AIzaSyC1AVRX9OTeAll2XR5SAqdL3xBngPlcuVE"
-        videoId="mfNWxURTJEA" // The YouTube video ID
+        videoId="m23w8YoZm_s" // The YouTube video ID
         play={false} // control playback of video with true/false
         fullscreen={false} // control whether the video should play in fullscreen or inline
         loop // control whether the video should loop when ended
@@ -18,7 +18,7 @@ export default function YouTubePlayer(props) {
         onChangeState={e => setStatus(e.state)}
         onChangeQuality={e => setQuality(e.quality)}
         onError={e => setError(e.error)}
-        style={{alignSelf: 'stretch', height: 300}}
+        style={{alignSelf: 'stretch', height: '30%'}}
       />
     </SafeAreaView>
   );

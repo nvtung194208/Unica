@@ -5,6 +5,7 @@ export const TestCourses = [
     image: require('../../assets/images/course1.png'),
     rate: '1',
     price: '799000',
+    videoDemoId: 'mfNWxURTJEA',
   },
   {
     id: 'two',
@@ -12,6 +13,7 @@ export const TestCourses = [
     image: require('../../assets/images/course2.png'),
     rate: '1.5',
     price: '799000',
+    videoDemoId: 'mfNWxURTJEA',
   },
   {
     id: 'three',
@@ -19,6 +21,7 @@ export const TestCourses = [
     image: require('../../assets/images/course1.png'),
     rate: '2',
     price: '799000',
+    videoDemoId: 'mfNWxURTJEA',
   },
   {
     id: 'four',
@@ -26,6 +29,7 @@ export const TestCourses = [
     image: require('../../assets/images/course2.png'),
     rate: '2.5',
     price: '799000',
+    videoDemoId: 'mfNWxURTJEA',
   },
   {
     id: 'five',
@@ -33,6 +37,7 @@ export const TestCourses = [
     image: require('../../assets/images/course1.png'),
     rate: '3',
     price: '799000',
+    videoDemoId: 'mfNWxURTJEA',
   },
   {
     id: 'six',
@@ -40,5 +45,6 @@ export const TestCourses = [
     image: require('../../assets/images/course2.png'),
     rate: '3.5',
     price: '799000',
+    videoDemoId: 'mfNWxURTJEA',
   },
 ];

@@ -1,9 +1,28 @@
-import {View, Text, Button, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  TouchableOpacity,
+  FlatList,
+  ScrollView,
+} from 'react-native';
 import {styles} from './style';
 import Icon from 'react-native-vector-icons/Octicons';
 import {TestCourses} from '../../../general/constants/TestCourses';
-export default function CategoryView({navigation, route}) {
+import CourseBox from '../../components/CourseBox';
+export default function ListCourseView({navigation, route}) {
   const {title} = route.params;
+
+  const renderItem = ({item}) => (
+    <CourseBox
+      key={item.id}
+      title={item.title}
+      rate={item.rate}
+      image={item.image}
+      price={item.price}
+      navigation={navigation}
+    />
+  );
 
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
@@ -20,7 +39,18 @@ export default function CategoryView({navigation, route}) {
           </Text>
         </View>
       </View>
-      <View style={styles.courses_container}>{TestCourses.map({course})}</View>
+      <ScrollView horizontal={true} style={styles.courses_container}>
+        <FlatList
+          horizontal={false}
+          data={TestCourses}
+          renderItem={renderItem}
+          keyExtractor={course => course.id}
+          removeClippedSubviews={true}
+          maxToRenderPerBatch={6}
+          initialNumToRender={6}
+          numColumns={2}
+        />
+      </ScrollView>
     </View>
   );
 }

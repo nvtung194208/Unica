@@ -30,7 +30,7 @@ export default function ListCourse(props) {
         </View>
         <TouchableOpacity
           onPress={() => {
-            props.navigation.navigate(ScreenNames.categoryView, {
+            props.navigation.navigate(ScreenNames.listCourseView, {
               title: props.type,
             });
           }}

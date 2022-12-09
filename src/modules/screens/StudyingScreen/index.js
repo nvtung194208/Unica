@@ -8,13 +8,17 @@ import {
   StatusBar,
   TouchableOpacity,
 } from 'react-native';
+import {styles} from './style';
 
-export default function StudyingScreen(props) {
+import AppHeader from '../../components/AppHeader';
+export default function StudyingScreen(navigation) {
   console.log('StudyingScreen is rendering !!!!');
 
   return (
     <SafeAreaView>
-      <Text style={{fontSize: 20, color: 'black'}}>StudyingScreen</Text>
+      <View style={styles.header}>
+        <Text style={styles.header_text}>Khoá học trọn đời</Text>
+      </View>
     </SafeAreaView>
   );
 }

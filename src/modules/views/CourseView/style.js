@@ -62,6 +62,7 @@ export const styles = StyleSheet.create({
   first_container: {
     height: 50,
     justifyContent: 'center',
+    marginTop: 10,
   },
   heart_button: {
     width: 50,
@@ -70,5 +71,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#d4d2d2',
     justifyContent: 'center',
     alignItems: 'center',
+    marginRight: 20,
   },
 });

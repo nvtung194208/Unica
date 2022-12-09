@@ -1,10 +1,11 @@
 import {View, Text, Button, TouchableOpacity, ScrollView} from 'react-native';
 import {styles} from './style';
+import {useState} from 'react';
 import DemoYouTubePlayerView from '../DemoYoutubePlayerView';
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/Ionicons';
 export default function CourseView({navigation, route}) {
   const {title, rate, price, key} = route.params;
-
+  const [isFavourited, setIsFavourited] = useState(false);
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
       <View style={styles.header}>
@@ -40,10 +41,35 @@ export default function CourseView({navigation, route}) {
                   <Text style={styles.price}>{price}</Text>
                   <Text style={[styles.price, {fontSize: 24}]}>₫</Text>
                 </View>
-                <TouchableOpacity style={styles.heart_button}>
-                  <Icon name="hearto" size={26} color="white" />
+                <TouchableOpacity
+                  onPress={() => setIsFavourited(!isFavourited)}
+                  style={styles.heart_button}
+                >
+                  <Icon
+                    name="heart"
+                    size={26}
+                    color={isFavourited ? 'red' : 'white'}
+                  />
                 </TouchableOpacity>
               </View>
+            </View>
+            <View style={{width: '100%', height: 50, marginTop: 20}}>
+              <TouchableOpacity
+                style={{
+                  marginHorizontal: 20,
+                  backgroundColor: 'red',
+                  borderRadius: 5,
+                  height: ' 100%',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Text
+                  style={{fontSize: 18, color: 'white', fontWeight: 'bold'}}
+                >
+                  ĐĂNG KÝ HỌC
+                </Text>
+              </TouchableOpacity>
             </View>
           </ScrollView>
         </View>

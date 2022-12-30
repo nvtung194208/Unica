@@ -27,8 +27,8 @@ export const styles = StyleSheet.create({
   button: {
     height: 70,
     backgroundColor: '#1877f2',
-    bottom: 0,
-    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   input: {
@@ -38,5 +38,9 @@ export const styles = StyleSheet.create({
   },
   date_picker: {
     backgroundColor: 'red',
+  },
+  button_text: {
+    color: '#ffffff',
+    fontSize: 20,
   },
 });

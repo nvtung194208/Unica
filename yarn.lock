@@ -5950,6 +5950,13 @@
     "jscodeshift" "^0.13.1"
     "nullthrows" "^1.1.1"
 
+"react-native-date-picker@^4.2.6":
+  "integrity" "sha512-qnSLefvCInFp1etQ27AsDzpCJgvi0Q0eIYRtIzjBp5WC5hzINIY7WWeQESAA/QUPbwFJU7Vk06ouQc51dC1Qaw=="
+  "resolved" "https://registry.npmjs.org/react-native-date-picker/-/react-native-date-picker-4.2.6.tgz"
+  "version" "4.2.6"
+  dependencies:
+    "prop-types" "^15.8.1"
+
 "react-native-dynamic-search-bar@^2.0.2":
   "integrity" "sha512-VOJf43hwfA5TRmYPTmPd5+unosruKXxVL41vP/AaofMrYM90hen0LOgGxUkZquqjg/nQidv/PsQhzOx02orE7w=="
   "resolved" "https://registry.npmjs.org/react-native-dynamic-search-bar/-/react-native-dynamic-search-bar-2.0.2.tgz"

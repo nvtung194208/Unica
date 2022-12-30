@@ -71,6 +71,26 @@ export default function CourseView({navigation, route}) {
                 </Text>
               </TouchableOpacity>
             </View>
+            <View style={{width: '100%', height: 50, marginTop: 5}}>
+              <TouchableOpacity
+                style={{
+                  marginHorizontal: 20,
+                  backgroundColor: 'green',
+                  borderRadius: 5,
+                  height: ' 100%',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  display: 'flex',
+                  flexDirection: 'row',
+                }}
+              >
+                <Text
+                  style={{fontSize: 18, color: 'white', fontWeight: 'bold'}}
+                >
+                  THÊM VÀO GIỎ HÀNG
+                </Text>
+              </TouchableOpacity>
+            </View>
           </ScrollView>
         </View>
       </View>

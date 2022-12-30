@@ -1,9 +1,9 @@
 export const TestCourses = [
   {
     id: 'one',
-    title: 'Sơ đồ tư duy',
-    image: require('../../assets/images/course1.png'),
-    rate: '1',
+    title: 'Nhập môn trí tuệ nhân tạo',
+    image: require('../../assets/images/course_ai.png'),
+    rate: '5',
     price: '799000',
     videoDemoId: 'mfNWxURTJEA',
   },

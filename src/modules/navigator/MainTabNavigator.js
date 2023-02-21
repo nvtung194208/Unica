@@ -18,7 +18,6 @@ export default function MainTabNavigator(props) {
       screenOptions={{
         headerShown: false,
       }}
-      scenceContainerStyle={{backgroundColor: 'black'}}
     >
       <Tab.Screen
         name="Trang chủ"

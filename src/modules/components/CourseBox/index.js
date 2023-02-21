@@ -42,7 +42,7 @@ export default function CourseBox(props) {
             type="star"
             ratingCount={5}
             startingValue={props.rate}
-            imageSize={20}
+            imageSize={21}
             tintColor="#efefef"
             ratingBackgroundColor="#efefef"
             readonly={true}

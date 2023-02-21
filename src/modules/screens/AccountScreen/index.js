@@ -21,7 +21,7 @@ export default AccountScreen = ({navigation}) => {
       <View
         style={{
           alignItems: 'center',
-          justifyContent:'center'
+          justifyContent: 'center',
         }}
       >
         <View style={styles.header}>
@@ -87,7 +87,12 @@ export default AccountScreen = ({navigation}) => {
             <Icon name="right" style={styles.icon} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={[styles.tab, {justifyContent: 'center'}]}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate(ScreenNames.loginScreen);
+            }}
+            style={[styles.tab, {justifyContent: 'center'}]}
+          >
             <Icon
               name="logout"
               size={20}

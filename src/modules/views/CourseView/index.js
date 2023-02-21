@@ -6,6 +6,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 export default function CourseView({navigation, route}) {
   const {title, rate, price, key} = route.params;
   const [isFavourited, setIsFavourited] = useState(false);
+  const [isRegisted, setIsRegisted] = useState(false);
+  var registerCourseText = isRegisted ? 'Huỷ đăng ký' : 'Đăng ký học';
+
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
       <View style={styles.header}>
@@ -63,11 +66,14 @@ export default function CourseView({navigation, route}) {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}
+                onPress={() => {
+                  setIsRegisted(!isRegisted);
+                }}
               >
                 <Text
                   style={{fontSize: 18, color: 'white', fontWeight: 'bold'}}
                 >
-                  ĐĂNG KÝ HỌC
+                  {registerCourseText}
                 </Text>
               </TouchableOpacity>
             </View>

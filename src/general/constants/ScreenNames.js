@@ -1,5 +1,6 @@
 export const ScreenNames = {
   loginScreen: 'LoginScreen',
+  registerScreen: 'RegisterScreen',
   mainTab: 'MainTab',
   accountTab: 'AccountTab',
   homeScreen: 'HoomScreen',
@@ -7,7 +8,7 @@ export const ScreenNames = {
   studyingScreen: 'StudyingSreen',
   favouriteScreen: 'FavouritesScreen',
   accountScreen: 'AccountScreen',
-  
+
   // account Tab
   changePasswordView: 'ChangePasswordView',
   customerSupportView: 'CustomerSupportView',

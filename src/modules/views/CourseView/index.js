@@ -3,6 +3,8 @@ import {styles} from './style';
 import {useState} from 'react';
 import DemoYouTubePlayerView from '../DemoYoutubePlayerView';
 import Icon from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Foundation from 'react-native-vector-icons/Foundation';
 export default function CourseView({navigation, route}) {
   const {title, rate, price, key} = route.params;
   const [isFavourited, setIsFavourited] = useState(false);
@@ -97,6 +99,115 @@ export default function CourseView({navigation, route}) {
                 </Text>
               </TouchableOpacity>
             </View>
+            <View
+              style={{
+                width: '100%',
+                marginTop: 30,
+                marginHorizontal: 20,
+              }}
+            >
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginTop: 10,
+                }}
+              >
+                <FontAwesome
+                  name="clock-o"
+                  color="#000000"
+                  size={20}
+                  style={{width: 25}}
+                />
+                <Text style={{fontSize: 16, color: '#000000'}}>Thời lượng</Text>
+              </View>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginTop: 10,
+                }}
+              >
+                <FontAwesome
+                  name="play-circle-o"
+                  color="#000000"
+                  size={20}
+                  style={{width: 25}}
+                />
+                <Text style={{fontSize: 16, color: '#000000'}}>Giáo trình</Text>
+              </View>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginTop: 10,
+                }}
+              >
+                <Foundation
+                  name="loop"
+                  color="#000000"
+                  size={20}
+                  style={{width: 25}}
+                />
+                <Text style={{fontSize: 16, color: '#000000'}}>
+                  Sở hữu trọn đời
+                </Text>
+              </View>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginTop: 10,
+                }}
+              >
+                <FontAwesome
+                  name="certificate"
+                  color="#000000"
+                  size={20}
+                  style={{width: 25}}
+                />
+                <Text style={{fontSize: 16, color: '#000000'}}>
+                  Cấp chứng nhận hoàn thành
+                </Text>
+              </View>
+            </View>
+            <View
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginTop: 20,
+                height: 40,
+                borderBottomWidth: 1,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontWeight: 'bold',
+                  color: '#000000',
+                  marginLeft: 20,
+                }}
+              >
+                Giới thiệu khoá học
+              </Text>
+            </View>
+            <Text style={{marginHorizontal: 20}}>
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Dis
+              parturient montes nascetur ridiculus mus mauris vitae. Ultrices mi
+              tempus imperdiet nulla malesuada pellentesque elit eget. Nisl nisi
+              scelerisque eu ultrices vitae auctor eu augue ut. Ipsum consequat
+              nisl vel pretium lectus quam id leo in. Et netus et malesuada
+              fames. Vitae proin sagittis nisl rhoncus mattis rhoncus. Imperdiet
+              proin fermentum leo vel orci porta. Velit dignissim sodales ut eu
+              sem integer. Risus commodo viverra maecenas accumsan lacus vel
+              facilisis volutpat.'
+            </Text>
           </ScrollView>
         </View>
       </View>

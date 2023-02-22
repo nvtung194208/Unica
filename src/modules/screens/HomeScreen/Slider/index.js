@@ -1,50 +1,68 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {View, FlatList, Image} from 'react-native';
-import {images} from '../../../../general/constants/TestImage';
+import {View, ScrollView, Image, Dimensions} from 'react-native';
+
+const images = [
+  {
+    id: 1,
+    uri: require('../../../../assets/images/course1.png'),
+  },
+  {
+    id: 2,
+    uri: require('../../../../assets/images/course2.png'),
+  },
+  {
+    id: 3,
+    uri: require('../../../../assets/images/course3.png'),
+  },
+];
+
+const windowWidth = Dimensions.get('window').width;
 
 const Slider = () => {
   const [index, setIndex] = useState(0);
-  const flatListRef = useRef(null);
+  const scrollViewRef = useRef(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex(prevIndex => (prevIndex + 1) % images.length);
-      flatListRef.current.scrollToIndex({index, animated: true});
+      if (index === images.length - 1) {
+        setIndex(0);
+        scrollViewRef.current.scrollTo({x: 0, animated: true});
+      } else {
+        setIndex(prevIndex => {
+          scrollViewRef.current.scrollTo({
+            x: windowWidth * (prevIndex + 1),
+            animated: true,
+          });
+          return prevIndex + 1;
+        });
+      }
     }, 2000);
 
     return () => clearInterval(interval);
   }, [index]);
 
-  const renderItem = ({item}) => (
-    <Image source={{uri: item.uri}} style={{width: '100%', height: '100%'}} />
-  );
-
   return (
     <View style={{flex: 1}}>
-      <FlatList
-        ref={flatListRef}
-        data={images}
-        renderItem={renderItem}
-        keyExtractor={item => item.id.toString()}
+      <ScrollView
+        ref={scrollViewRef}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        onMomentumScrollEnd={event => {
-          const {contentOffset} = event.nativeEvent;
-          const index = Math.round(contentOffset.x / event.target.offsetWidth);
+        scrollEventThrottle={16}
+        onScroll={event => {
+          const contentOffset = event.nativeEvent.contentOffset;
+          const index = Math.round(contentOffset.x / windowWidth);
           setIndex(index);
         }}
-        // initialScrollIndex={flatListRef.current}
-        // onScrollToIndexFailed={images => {
-        //   const wait = new Promise(resolve => setTimeout(resolve, 500));
-        //   wait.then(() => {
-        //     flatListRef.current?.scrollToIndex({
-        //       index: images.index,
-        //       animated: true,
-        //     });
-        //   });
-        // }}
-      />
+      >
+        {images.map(item => (
+          <Image
+            key={item.id}
+            source={item.uri}
+            style={{width: windowWidth, height: 200}}
+          />
+        ))}
+      </ScrollView>
     </View>
   );
 };

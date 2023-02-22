@@ -9,15 +9,22 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  Alert,
 } from 'react-native';
-import {transparent} from 'react-native-paper/lib/typescript/styles/colors';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import {ScreenNames} from '../../../general/constants/ScreenNames';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 
-const LoginScreen = ({navigation}) => {
+const RegisterScreen = ({navigation}) => {
+  const [name, setName] = React.useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = React.useState('');
+  const [isPasswordVisible, setPasswordVisibility] = useState(false);
 
+  const handleNameChange = text => {
+    setName(text);
+  };
   const handleEmailChange = text => {
     setEmail(text);
   };
@@ -26,25 +33,39 @@ const LoginScreen = ({navigation}) => {
     setPassword(text);
   };
 
-  const handleLoginPress = async () => {
+  const handleConfirmPasswordChange = text => {
+    setConfirmPassword(text);
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisibility(!isPasswordVisible);
+  };
+
+  const handleRegisterPress = async () => {
+    if (!name || !email || !password || !confirmPassword) {
+      Alert.alert('Error', 'Kiểm tra lại các thông tin');
+      return;
+    }
     try {
       const response = await fetch(
-        'https://unica-production-3451.up.railway.app/api/auth/login',
+        'https://unica-production-3451.up.railway.app/api/auth/register',
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            email,
-            password,
+            name: name,
+            email: email,
+            password: password,
+            confirm_password: confirmPassword,
           }),
         },
       );
       const data = await response.json();
       if (response.ok) {
         console.log(data);
-        navigation.navigate(ScreenNames.mainTab);
+        navigation.navigate(ScreenNames.loginScreen);
       } else {
         // Handle error response from API
       }
@@ -54,13 +75,13 @@ const LoginScreen = ({navigation}) => {
     }
   };
 
-  const handleRegisterPress = () => {
-    navigation.navigate(ScreenNames.registerScreen);
+  const handleHaveAccountPress = () => {
+    navigation.navigate(ScreenNames.loginScreen);
   };
 
   return (
     <ImageBackground
-      source={require('../../../assets/images/login_background.jpg')}
+      source={require('../../../assets/images/signup_background.jpg')}
       style={styles.background}
     >
       <KeyboardAvoidingView
@@ -74,6 +95,28 @@ const LoginScreen = ({navigation}) => {
           />
         </View>
         <View style={styles.formContainer}>
+          <View style={styles.inputContainer}>
+            <FontAwesome
+              name="user"
+              size={20}
+              color="#ffffff"
+              style={styles.icon}
+            />
+            <TextInput
+              placeholder="Tên của bạn"
+              placeholderTextColor="#ffffff"
+              style={styles.input}
+              value={name}
+              onChangeText={handleNameChange}
+              autoCapitalize="none"
+              keyboardType="default"
+              returnKeyType="next"
+              onSubmitEditing={() => {
+                passwordInput.focus();
+              }}
+              blurOnSubmit={false}
+            />
+          </View>
           <View style={styles.inputContainer}>
             <FontAwesome
               name="envelope"
@@ -96,6 +139,38 @@ const LoginScreen = ({navigation}) => {
               blurOnSubmit={false}
             />
           </View>
+          <View style={[styles.inputContainer]}>
+            <FontAwesome
+              name="lock"
+              size={20}
+              color="#ffffff"
+              style={styles.icon}
+            />
+            <TextInput
+              placeholder="Mật khẩu"
+              placeholderTextColor="#ffffff"
+              style={styles.input}
+              value={password}
+              onChangeText={handlePasswordChange}
+              returnKeyType="go"
+              ref={input => {
+                passwordInput = input;
+              }}
+              secureTextEntry={!isPasswordVisible}
+            />
+            <TouchableOpacity
+              onPress={() => {
+                setPasswordVisibility(!isPasswordVisible);
+              }}
+            >
+              <Ionicon
+                name={isPasswordVisible ? 'eye-off-outline' : 'eye-outline'}
+                size={20}
+                color="#000000"
+                style={{marginLeft: 5}}
+              />
+            </TouchableOpacity>
+          </View>
           <View style={styles.inputContainer}>
             <FontAwesome
               name="lock"
@@ -104,24 +179,38 @@ const LoginScreen = ({navigation}) => {
               style={styles.icon}
             />
             <TextInput
-              placeholder="Password"
+              placeholder="Nhập lại mật khẩu"
               placeholderTextColor="#ffffff"
               style={styles.input}
-              value={password}
-              onChangeText={handlePasswordChange}
-              secureTextEntry={true}
+              value={confirmPassword}
+              onChangeText={handleConfirmPasswordChange}
               returnKeyType="go"
               ref={input => {
                 passwordInput = input;
               }}
+              secureTextEntry={!isPasswordVisible}
             />
+            <TouchableOpacity
+              on={() => {
+                setPasswordVisibility(!isPasswordVisible);
+              }}
+            >
+              <Ionicon
+                name={isPasswordVisible ? 'eye-off-outline' : 'eye-outline'}
+                size={20}
+                color="#000000"
+                style={{marginLeft: 5}}
+              />
+            </TouchableOpacity>
           </View>
+
           <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={handleLoginPress}
+            onPress={handleRegisterPress}
           >
-            <Text style={styles.buttonText}>Đăng nhập</Text>
+            <Text style={styles.buttonText}>Đăng ký</Text>
           </TouchableOpacity>
+
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <TouchableOpacity
               style={[
@@ -132,45 +221,15 @@ const LoginScreen = ({navigation}) => {
                   width: '50%',
                 },
               ]}
-              onPress={handleRegisterPress}
+              onPress={handleHaveAccountPress}
             >
               <Text style={[styles.buttonText, {color: '#0975b5'}]}>
-                Bạn chưa có tài khoản ?
+                Bạn đã có tài khoản
               </Text>
             </TouchableOpacity>
           </View>
         </View>
       </KeyboardAvoidingView>
-      <View style={styles.footer}>
-        <View style={styles.businessInfo}>
-          <Text style={styles.businessInfoText}>Business Information</Text>
-        </View>
-        <View style={styles.socialIcons}>
-          <FontAwesome
-            name="facebook-f"
-            size={20}
-            color="#ffffff"
-            style={styles.socialIcon}
-          />
-          <FontAwesome
-            name="twitter"
-            size={20}
-            color="#ffffff"
-            style={styles.socialIcon}
-          />
-          <FontAwesome
-            name="instagram"
-            size={20}
-            color="#ffffff"
-            style={styles.socialIcon}
-          />
-        </View>
-        <View style={styles.copyRight}>
-          <Text style={styles.copyRightText}>
-            © 2023 Unica. All Rights Reserved.
-          </Text>
-        </View>
-      </View>
     </ImageBackground>
   );
 };
@@ -216,6 +275,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     flex: 1,
   },
+
   buttonContainer: {
     backgroundColor: '#0975b5',
     borderRadius: 25,
@@ -263,4 +323,4 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 });
-export default LoginScreen;
+export default RegisterScreen;

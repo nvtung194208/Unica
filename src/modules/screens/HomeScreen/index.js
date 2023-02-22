@@ -18,7 +18,7 @@ export default function HomeScreen({navigation}) {
   return (
     <SafeAreaView>
       <ScrollView>
-        {/* <Slider></Slider> */}
+        <Slider></Slider>
         <ListCourse type="Khoá học đã xem" navigation={navigation} />
         <ListCourse type="Dành riêng cho bạn " navigation={navigation} />
         <ListCourse type="Top bán chạy" navigation={navigation} />

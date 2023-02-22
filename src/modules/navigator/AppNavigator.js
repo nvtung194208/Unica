@@ -18,6 +18,7 @@ import CategoryView from '../views/CategoryView';
 import CourseView from '../views/CourseView';
 import ListCourseView from '../views/ListCourseView';
 import LoginScreen from '../screens/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,11 +31,16 @@ export default AppNavigator = () => {
         }}
       >
         <Stack.Group>
-          {/* <Stack.Screen
+          <Stack.Screen
             name={ScreenNames.loginScreen}
             component={LoginScreen}
             options={{headerShown: false}}
-          /> */}
+          />
+          <Stack.Screen
+            name={ScreenNames.registerScreen}
+            component={RegisterScreen}
+            options={{headerShown: false}}
+          />
           <Stack.Screen
             name={ScreenNames.mainTab}
             component={MainTabNavigator}

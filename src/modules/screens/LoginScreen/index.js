@@ -10,12 +10,21 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import {transparent} from 'react-native-paper/lib/typescript/styles/colors';
+import {styles} from './style';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import {ScreenNames} from '../../../general/constants/ScreenNames';
+import {
+  getPreference,
+  setPreference,
+} from '../../../libs/storage/PreferenceStorage';
+import {PreferenceKeys} from '../../../general/constants/Global';
 
 const LoginScreen = ({navigation}) => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(
+    getPreference(PreferenceKeys.UserEmail)
+      ? getPreference(PreferenceKeys.UserEmail)
+      : '',
+  );
   const [password, setPassword] = useState('');
 
   const handleEmailChange = text => {
@@ -43,8 +52,23 @@ const LoginScreen = ({navigation}) => {
       );
       const data = await response.json();
       if (response.ok) {
-        console.log(data);
-        navigation.navigate(ScreenNames.mainTab);
+        // console.log(data);
+        // console.log(data.data.original.user);
+        if (data.success) {
+          const userId = await data.data.original.user.id;
+          const token = await data.data.original.access_token;
+          const userName = await data.data.original.user.name;
+          const userEmail = await data.data.original.user.email;
+          try {
+            setPreference(PreferenceKeys.UserToken, token);
+            setPreference(PreferenceKeys.UserId, userId.toString());
+            setPreference(PreferenceKeys.UserName, userName);
+            setPreference(PreferenceKeys.UserEmail, userEmail);
+          } catch (error) {
+            alert(error);
+          }
+          navigation.navigate(ScreenNames.mainTab);
+        }
       } else {
         // Handle error response from API
       }
@@ -174,93 +198,4 @@ const LoginScreen = ({navigation}) => {
     </ImageBackground>
   );
 };
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  logoContainer: {
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  logo: {
-    width: 100,
-    height: 100,
-  },
-
-  formContainer: {
-    width: '100%',
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 10,
-  },
-  icon: {
-    marginRight: 10,
-    color: 'rgba(0, 0, 0, 0.6)',
-  },
-  input: {
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-    borderRadius: 25,
-    color: '#ffffff',
-    height: 50,
-    fontSize: 16,
-    paddingLeft: 20,
-    flex: 1,
-  },
-  buttonContainer: {
-    backgroundColor: '#0975b5',
-    borderRadius: 25,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 20,
-  },
-  buttonText: {
-    color: '#ffffff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  footer: {
-    position: 'relative',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-    paddingVertical: 20,
-    paddingHorizontal: 20,
-  },
-  businessInfo: {
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  businessInfoText: {
-    color: '#ffffff',
-    fontSize: 14,
-  },
-  socialIcons: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  socialIcon: {
-    marginHorizontal: 10,
-  },
-  copyRight: {
-    alignItems: 'center',
-  },
-  copyRightText: {
-    color: '#ffffff',
-    fontSize: 12,
-  },
-});
 export default LoginScreen;

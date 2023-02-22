@@ -11,14 +11,14 @@ import Icon from 'react-native-vector-icons/Octicons';
 import {TestCourses} from '../../../general/constants/TestCourses';
 import CourseBox from '../../components/CourseBox';
 export default function ListCourseView({navigation, route}) {
-  const {title} = route.params;
+  const {title, data} = route.params;
 
   const renderItem = ({item}) => (
     <CourseBox
       key={item.id}
-      title={item.title}
+      title={item.name}
       rate={item.rate}
-      image={item.image}
+      image={item.photo}
       price={item.price}
       navigation={navigation}
     />
@@ -42,7 +42,7 @@ export default function ListCourseView({navigation, route}) {
       <ScrollView horizontal={true} style={styles.courses_container}>
         <FlatList
           horizontal={false}
-          data={TestCourses}
+          data={data}
           renderItem={renderItem}
           keyExtractor={course => course.id}
           removeClippedSubviews={true}

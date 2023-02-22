@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Foundation from 'react-native-vector-icons/Foundation';
 export default function CourseView({navigation, route}) {
-  const {title, rate, price, key} = route.params;
+  const {title, rate, price, id} = route.params;
   const [isFavourited, setIsFavourited] = useState(false);
   const [isRegisted, setIsRegisted] = useState(false);
   var registerCourseText = isRegisted ? 'Huỷ đăng ký' : 'Đăng ký học';

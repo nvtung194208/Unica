@@ -23,7 +23,7 @@ export default function CourseBox(props) {
       style={styles.container}
     >
       <View style={{flex: 1}}>
-        <Image style={styles.image} source={props.image} />
+        <Image style={styles.image} source={{uri: props.image}} />
       </View>
       <View style={styles.info_container}>
         <View style={{flex: 2, justifyContent: 'center', width: '90%'}}>

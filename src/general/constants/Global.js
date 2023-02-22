@@ -19,4 +19,5 @@ export const PreferenceKeys = {
   UserToken: 'UserToken',
   UserAvatar: 'UserAvatar',
   UserName: 'UserName',
+  UserEmail: 'UserEmail',
 };

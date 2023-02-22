@@ -7,14 +7,26 @@ import {
   StyleSheet,
   StatusBar,
   TouchableOpacity,
+  Button,
 } from 'react-native';
 import {ScreenNames} from '../../../general/constants/ScreenNames';
 import {styles} from './style';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {images} from '../../../assets/images';
+import {getPreference} from '../../../libs/storage/PreferenceStorage';
+import {PreferenceKeys} from '../../../general/constants/Global';
 
 export default AccountScreen = ({navigation}) => {
   console.log('AccountScreen is rendering !!!!');
+  const [userEmail, setUserEmail] = useState('');
+
+  useEffect(() => {
+    async function getUserEmail() {
+      const userEmail = await getPreference(PreferenceKeys.UserEmail);
+      setUserEmail(userEmail);
+    }
+    getUserEmail();
+  }, []);
 
   return (
     <SafeAreaView>
@@ -28,9 +40,9 @@ export default AccountScreen = ({navigation}) => {
           <Text style={styles.header_text}>Tài khoản</Text>
         </View>
         <View style={styles.user_avt}>
-          <Image style={styles.image} source={images.test_image} />
+          <Image style={styles.image} source={images.default_avt} />
         </View>
-        <Text style={{marginTop: 30, color: 'grey'}}>tunglk27@gmail.com</Text>
+        <Text style={{marginTop: 30, color: 'grey'}}>{userEmail}</Text>
         <View style={styles.tab_container}>
           <TouchableOpacity
             style={styles.tab}
@@ -91,7 +103,7 @@ export default AccountScreen = ({navigation}) => {
             onPress={() => {
               navigation.navigate(ScreenNames.loginScreen);
             }}
-            style={[styles.tab, {justifyContent: 'center'}]}
+            style={[styles.tab, {justifyContent: 'center', marginTop: 10}]}
           >
             <Icon
               name="logout"

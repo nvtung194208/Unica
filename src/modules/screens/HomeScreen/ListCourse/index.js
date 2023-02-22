@@ -9,9 +9,9 @@ export default function ListCourse(props) {
   const renderItem = ({item}) => (
     <CourseBox
       key={item.id}
-      title={item.title}
+      title={item.name}
       rate={item.rate}
-      image={item.image}
+      image={item.photo}
       price={item.price}
       navigation={props.navigation}
     />
@@ -32,6 +32,7 @@ export default function ListCourse(props) {
           onPress={() => {
             props.navigation.navigate(ScreenNames.listCourseView, {
               title: props.type,
+              data: props.data,
             });
           }}
           style={{
@@ -47,7 +48,7 @@ export default function ListCourse(props) {
 
       <FlatList
         horizontal={true}
-        data={TestCourses}
+        data={props.data}
         renderItem={renderItem}
         keyExtractor={course => course.id}
         removeClippedSubviews={true}

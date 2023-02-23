@@ -9,6 +9,7 @@ export default function ListCourse(props) {
   const renderItem = ({item}) => (
     <CourseBox
       key={item.id}
+      id={item.id}
       title={item.name}
       rate={item.rate}
       image={item.photo}

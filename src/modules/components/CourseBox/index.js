@@ -13,7 +13,8 @@ export default function CourseBox(props) {
     <TouchableOpacity
       onPress={() => {
         props.navigation.navigate(ScreenNames.courseView, {
-          key: props.id,
+          key: props.key,
+          id: props.id,
           title: props.title,
           rate: props.rate,
           image: props.image,

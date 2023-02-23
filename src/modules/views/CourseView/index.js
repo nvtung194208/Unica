@@ -1,16 +1,42 @@
-import {View, Text, Button, TouchableOpacity, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  SectionList,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import {styles} from './style';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import DemoYouTubePlayerView from '../DemoYoutubePlayerView';
 import Icon from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Foundation from 'react-native-vector-icons/Foundation';
-export default function CourseView({navigation, route}) {
-  const {title, rate, price, id} = route.params;
+export default function CourseView({navigation, route, props}) {
+  const {key, id, title, rate, image, price} = route.params;
   const [isFavourited, setIsFavourited] = useState(false);
   const [isRegisted, setIsRegisted] = useState(false);
+  const [courseData, setCourseData] = useState({});
+  const [sectionData, setSectionData] = useState([]);
   var registerCourseText = isRegisted ? 'Huỷ đăng ký' : 'Đăng ký học';
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const courseId = route.params.id;
+
+      const promise1 = fetch(
+        `https://unica-production-3451.up.railway.app/api/course/${courseId}`,
+      )
+        .then(response => response.json())
+        .catch(error => console.error(error));
+
+      const [result1] = await Promise.all([promise1]);
+      setCourseData(result1.data);
+      setSectionData(result1.data.parts);
+      console.log(result1.data.parts);
+    };
+
+    fetchData();
+  }, []);
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
       <View style={styles.header}>
@@ -196,18 +222,12 @@ export default function CourseView({navigation, route}) {
                 Giới thiệu khoá học
               </Text>
             </View>
-            <Text style={{marginHorizontal: 20}}>
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Dis
-              parturient montes nascetur ridiculus mus mauris vitae. Ultrices mi
-              tempus imperdiet nulla malesuada pellentesque elit eget. Nisl nisi
-              scelerisque eu ultrices vitae auctor eu augue ut. Ipsum consequat
-              nisl vel pretium lectus quam id leo in. Et netus et malesuada
-              fames. Vitae proin sagittis nisl rhoncus mattis rhoncus. Imperdiet
-              proin fermentum leo vel orci porta. Velit dignissim sodales ut eu
-              sem integer. Risus commodo viverra maecenas accumsan lacus vel
-              facilisis volutpat.'
-            </Text>
+            <Text style={{marginHorizontal: 20}}>{courseData.description}</Text>
+            <Text style={{marginHorizontal: 20}}>{courseData.description}</Text>
+
+            <Text style={{marginHorizontal: 20}}>{courseData.description}</Text>
+
+            <Text style={{marginHorizontal: 20}}>{courseData.description}</Text>
           </ScrollView>
         </View>
       </View>

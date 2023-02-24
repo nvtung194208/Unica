@@ -44,6 +44,7 @@ const Slider = () => {
   return (
     <View style={{flex: 1}}>
       <ScrollView
+        // style={{width: windowWidth * 3}}
         ref={scrollViewRef}
         horizontal
         pagingEnabled

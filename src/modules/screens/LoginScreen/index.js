@@ -45,8 +45,8 @@ const LoginScreen = ({navigation}) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            email,
-            password,
+            email: 'admin@sample.com',
+            password: '123123123',
           }),
         },
       );
@@ -153,7 +153,7 @@ const LoginScreen = ({navigation}) => {
                 {
                   backgroundColor: 'transparent',
                   // backgroundColor: 'red',
-                  width: '50%',
+                  width: '80%',
                 },
               ]}
               onPress={handleRegisterPress}

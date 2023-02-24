@@ -21,26 +21,6 @@ export default function HomeScreen({navigation}) {
   const [viewedCourseData, setViewedCourseData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   console.log('HomeScreen is rendering !!!!');
-  // useEffect(() => {
-  //   fetch('https://unica-production-3451.up.railway.app/api/course')
-  //     .then(response => response.json())
-  //     .then(allCourseData => setAllCourseData(allCourseData.data))
-  //     .catch(error => console.error(error));
-
-  //   fetch('https://unica-production-3451.up.railway.app/api/course/list-favo/1')
-  //     .then(response => response.json())
-  //     .then(favCourseData => {
-  //       const dataArray = Object.values(favCourseData.data);
-  //       console.log('dataArray', dataArray);
-
-  //       setFavCourseData(dataArray);
-  //     })
-  //     .catch(error => console.error(error));
-  //   fetch('https://unica-production-3451.up.railway.app/api/course/list-view/1')
-  //     .then(response => response.json())
-  //     .then(viewedCourseData => setViewedCourseData(viewedCourseData.data))
-  //     .catch(error => console.error(error));
-  // }, []);
 
   useEffect(() => {
     const fetchData = async () => {

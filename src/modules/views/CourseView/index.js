@@ -1,4 +1,4 @@
-import {View, Text, SectionList, TouchableOpacity} from 'react-native';
+import {View, Text, SectionList, TouchableOpacity, Image} from 'react-native';
 import {ScrollView} from 'react-native-virtualized-view';
 import {styles} from './style';
 import {useEffect, useState} from 'react';
@@ -45,18 +45,6 @@ export default function CourseView({navigation, route, props}) {
       const [result1] = await Promise.all([promise1]);
       setCourseData(result1.data);
       setSectionData(result1.data.parts);
-      // console.log(result1.data.parts[0].videos[0].path);
-      const url = result1.data.parts[0].videos[0].path;
-      // const regExp = /^.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
-      // const match = url.match(regExp);
-
-      // if (match && match[1]) {
-      //   const videoId = match[1];
-      //   // console.log(videoId);
-      //   setVideoId(videoId);
-      // }
-      const videoId = getVideoId(url);
-      setVideoId(videoId);
     };
 
     fetchData();
@@ -82,7 +70,7 @@ export default function CourseView({navigation, route, props}) {
         onPress={() => {
           navigation.navigate(ScreenNames.videoView, {
             videoId: getVideoId(item.path),
-            title: item.name + ':' + item.description,
+            title: item.name + ':' + ' ' + item.description,
           });
         }}
         style={styles.learn_button}
@@ -117,13 +105,10 @@ export default function CourseView({navigation, route, props}) {
             {JSON.stringify(title).replace(/\"/g, '')}
           </Text>
         </View>
-        <View style={styles.right_icon_container}>
-          <Icon name="cart-outline" style={styles.icon} size={25}></Icon>
-        </View>
+        <View style={styles.right_icon_container}></View>
       </View>
       <View style={{height: '100%', width: '100%'}}>
-        <DemoYouTubePlayerView videoId={videoId} style={styles.demo_video} />
-
+        <Image source={{uri: courseData.photo}} style={styles.course_image} />
         <View style={styles.course_info}>
           <ScrollView style={{height: '100%', width: '100%'}}>
             <View style={styles.first_container}>
@@ -136,7 +121,7 @@ export default function CourseView({navigation, route, props}) {
               >
                 <View style={styles.price_container}>
                   <Text style={styles.price}>{price}</Text>
-                  <Text style={[styles.price, {fontSize: 24}]}>₫</Text>
+                  <Text style={[styles.price, {fontSize: 24}]}>$</Text>
                 </View>
                 <TouchableOpacity
                   onPress={() => setIsFavourited(!isFavourited)}

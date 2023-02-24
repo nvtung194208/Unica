@@ -2,9 +2,10 @@ import {View, Text, Button, TouchableOpacity} from 'react-native';
 import AppHeader from '../../components/AppHeader';
 import {styles} from './style';
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import DemoYouTubePlayerView from '../DemoYoutubePlayerView';
 export default function VideoView({navigation, route, props}) {
   const {videoId, title} = route.params;
+  console.log(videoId);
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
       <View style={styles.header}>
@@ -19,9 +20,12 @@ export default function VideoView({navigation, route, props}) {
             {JSON.stringify(title).replace(/\"/g, '')}
           </Text>
         </View>
-        <View style={styles.right_icon_container}>
-          <Icon name="cart-outline" style={styles.icon} size={25}></Icon>
-        </View>
+        <View style={styles.button}></View>
+      </View>
+      <View style={{height: '100%', width: '100%'}}>
+        <DemoYouTubePlayerView videoId={videoId} style={styles.demo_video} />
+
+        <View style={styles.course_info}></View>
       </View>
     </View>
   );

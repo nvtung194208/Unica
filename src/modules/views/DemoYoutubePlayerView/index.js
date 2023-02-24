@@ -12,7 +12,7 @@ export default function DemoYouTubePlayerView(props) {
       <YouTube
         apiKey="AIzaSyC1AVRX9OTeAll2XR5SAqdL3xBngPlcuVE"
         videoId={videoId} // The YouTube video ID
-        play={false} // control playback of video with true/false
+        play={true} // control playback of video with true/false
         fullscreen={false} // control whether the video should play in fullscreen or inline
         loop // control whether the video should loop when ended
         onReady={e => setIsReady(true)}

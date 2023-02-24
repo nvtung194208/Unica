@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Button, Text} from 'react-native';
 import {NavigationContainer, StackActions} from '@react-navigation/native';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -50,7 +50,10 @@ export default AppNavigator = () => {
         </Stack.Group>
 
         <Stack.Group
-          screenOptions={{presentation: 'modal', animation: 'slide_from_right'}}
+          screenOptions={{
+            presentation: 'modal',
+            animation: 'slide_from_right',
+          }}
         >
           <Stack.Screen
             name={ScreenNames.updateProfileView}
@@ -89,6 +92,7 @@ export default AppNavigator = () => {
           <Stack.Screen name={ScreenNames.courseView} component={CourseView} />
           <Stack.Screen name={ScreenNames.videoView} component={VideoView} />
         </Stack.Group>
+        <Stack.Group></Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   );

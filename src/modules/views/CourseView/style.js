@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     width: 75,
   },
 
-  demo_video: {
+  course_image: {
     width: '100%',
     height: '30%',
   },

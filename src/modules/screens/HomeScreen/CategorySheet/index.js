@@ -5,11 +5,10 @@ import {styles} from './style';
 import {Category} from '../../../../general/constants/Category';
 import {ScreenNames} from '../../../../general/constants/ScreenNames';
 export default function CategorySheet(props, navigation) {
-  //constants
   const iconSize = 25;
 
   return (
-    <View style={{marginTop: 20}}>
+    <View style={{marginVertical: 20}}>
       <Text style={styles.text_bold}>
         Bạn chưa tìm thấy khoá học mình quan tâm ?
       </Text>
@@ -23,6 +22,7 @@ export default function CategorySheet(props, navigation) {
             onPress={() => {
               props.navigation.navigate(ScreenNames.categoryView, {
                 title: category.title,
+                id: category.id,
               });
             }}
             key={category.id}

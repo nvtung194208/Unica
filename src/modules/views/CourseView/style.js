@@ -74,7 +74,7 @@ export const styles = StyleSheet.create({
     marginRight: 20,
   },
   sectionHeader: {
-    backgroundColor: '#808080',
+    backgroundColor: '#939799',
     height: 80,
     justifyContent: 'space-between',
     marginHorizontal: 10,

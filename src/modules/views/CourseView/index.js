@@ -7,8 +7,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Foundation from 'react-native-vector-icons/Foundation';
 import {ScreenNames} from '../../../general/constants/ScreenNames';
+import {PreferenceKeys} from '../../../general/constants/Global';
+import {getPreference} from '../../../libs/storage/PreferenceStorage';
 export default function CourseView({navigation, route, props}) {
-  const {key, id, title, rate, image, price} = route.params;
+  const {key, id, title, rate, image, price, status} = route.params;
+  const [isViewed, setIsView] = useState(false);
   const [isFavourited, setIsFavourited] = useState(false);
   const [isRegisted, setIsRegisted] = useState(false);
   const [courseData, setCourseData] = useState({});
@@ -34,7 +37,36 @@ export default function CourseView({navigation, route, props}) {
 
   useEffect(() => {
     const fetchData = async () => {
+      const userId = await getPreference(PreferenceKeys.UserId);
       const courseId = route.params.id;
+      // const is_seen = route.params.status.is_seen;
+
+      if (!route.params.status) {
+        try {
+          const response = await fetch(
+            'https://unica-production-3451.up.railway.app/api/course/view',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                user_id: userId,
+                course_id: courseId,
+              }),
+            },
+          );
+          const data = await response.json();
+          if (data.ok) {
+            console.log('Đã xem khoá học mới');
+            setIsView(true);
+          }
+        } catch (e) {
+          console.error(error);
+        }
+      } else {
+        setIsView(true);
+      }
 
       const promise1 = fetch(
         `https://unica-production-3451.up.railway.app/api/course/${courseId}`,
@@ -256,7 +288,11 @@ export default function CourseView({navigation, route, props}) {
                 Giới thiệu khoá học
               </Text>
             </View>
-            <Text style={{marginHorizontal: 20}}>{courseData.description}</Text>
+            <Text
+              style={{marginHorizontal: 20, color: '#000000', marginTop: 5}}
+            >
+              {courseData.description}
+            </Text>
             <SectionList
               scrollEnabled={false}
               sections={sections}

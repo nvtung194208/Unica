@@ -20,11 +20,12 @@ export default function HomeScreen({navigation}) {
   const [favCourseData, setFavCourseData] = useState([]);
   const [viewedCourseData, setViewedCourseData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [dataLengths, setDataLengths] = useState({all: 0, fav: 0, viewed: 0});
   console.log('HomeScreen is rendering !!!!');
 
   useEffect(() => {
     const fetchData = async () => {
-      const useId = await getPreference(PreferenceKeys.UserId);
+      const userId = await getPreference(PreferenceKeys.UserId);
 
       const promise1 = fetch(
         'https://unica-production-3451.up.railway.app/api/course',
@@ -33,11 +34,11 @@ export default function HomeScreen({navigation}) {
         .catch(error => console.error(error));
 
       const promise2 = fetch(
-        `https://unica-production-3451.up.railway.app/api/course/list-favo/${useId}`,
+        `https://unica-production-3451.up.railway.app/api/course/list-favo/${userId}`,
       ).then(response => response.json());
 
       const promise3 = fetch(
-        `https://unica-production-3451.up.railway.app/api/course/list-view/${useId}`,
+        `https://unica-production-3451.up.railway.app/api/course/list-view/${userId}`,
       )
         .then(response => response.json())
         .catch(error => console.error(error));
@@ -50,10 +51,15 @@ export default function HomeScreen({navigation}) {
       setAllCourseData(result1.data);
       setFavCourseData(Object.values(result2.data));
       setViewedCourseData(result3.data);
+      setDataLengths({
+        all: result1.data.length,
+        fav: Object.values(result2.data).length,
+        viewed: result3.data.length,
+      });
       setIsLoading(false);
     };
     fetchData();
-  }, []);
+  }, [dataLengths]);
 
   if (isLoading) {
     return <ActivityIndicator size="large" color="#0975b5" />;

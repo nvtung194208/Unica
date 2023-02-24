@@ -1,6 +1,6 @@
-import {View, Text, TouchableOpacity} from 'react-native'
+import {View, Text, TouchableOpacity} from 'react-native';
 
-import Icon from 'react-native-vector-icons/FontAwesome5'
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import {styles} from './style';
 import {Category} from '../../../../general/constants/Category';
 import {ScreenNames} from '../../../../general/constants/ScreenNames';
@@ -17,6 +17,7 @@ export default function CategoryList(props) {
             onPress={() => {
               props.navigation.navigate(ScreenNames.categoryView, {
                 title: category.title,
+                id: category.id,
               });
             }}
             key={category.id}

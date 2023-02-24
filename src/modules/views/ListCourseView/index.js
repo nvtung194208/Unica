@@ -20,6 +20,7 @@ export default function ListCourseView({navigation, route}) {
       rate={item.rate}
       image={item.photo}
       price={item.price}
+      status={item.pivot}
       navigation={navigation}
     />
   );

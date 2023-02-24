@@ -1,23 +1,36 @@
-import {
-  View,
-  Text,
-  SectionList,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import {View, Text, SectionList, TouchableOpacity} from 'react-native';
+import {ScrollView} from 'react-native-virtualized-view';
 import {styles} from './style';
 import {useEffect, useState} from 'react';
 import DemoYouTubePlayerView from '../DemoYoutubePlayerView';
 import Icon from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Foundation from 'react-native-vector-icons/Foundation';
+import {ScreenNames} from '../../../general/constants/ScreenNames';
 export default function CourseView({navigation, route, props}) {
   const {key, id, title, rate, image, price} = route.params;
   const [isFavourited, setIsFavourited] = useState(false);
   const [isRegisted, setIsRegisted] = useState(false);
   const [courseData, setCourseData] = useState({});
   const [sectionData, setSectionData] = useState([]);
+  const [videoId, setVideoId] = useState('');
   var registerCourseText = isRegisted ? 'Huỷ đăng ký' : 'Đăng ký học';
+  function minuteToHour(minute) {
+    var duration = '';
+    if (minute < 0) return (duration = 0);
+    else if (minute < 60) return (duration = minute + 'phút');
+    else if (minute >= 60)
+      return minute / 60 + ' ' + 'giờ' + ' ' + (minute % 60) + ' ' + 'phút';
+  }
+
+  function getVideoId(url) {
+    const regExp = /^.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    if (match && match[1]) {
+      const videoId = match[1];
+      return videoId;
+    } else return null;
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,11 +45,64 @@ export default function CourseView({navigation, route, props}) {
       const [result1] = await Promise.all([promise1]);
       setCourseData(result1.data);
       setSectionData(result1.data.parts);
-      console.log(result1.data.parts);
+      // console.log(result1.data.parts[0].videos[0].path);
+      const url = result1.data.parts[0].videos[0].path;
+      // const regExp = /^.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
+      // const match = url.match(regExp);
+
+      // if (match && match[1]) {
+      //   const videoId = match[1];
+      //   // console.log(videoId);
+      //   setVideoId(videoId);
+      // }
+      const videoId = getVideoId(url);
+      setVideoId(videoId);
     };
 
     fetchData();
   }, []);
+
+  // console.log(sectionData[0].videos[0].path);
+
+  const sections = sectionData.map(section => ({
+    title: section.name,
+    data: section.videos,
+    part: section.part,
+    length: section.videos.length,
+  }));
+
+  const renderItem = ({item}) => (
+    <View style={styles.item}>
+      <View style={[styles.item_text_container, {width: '80%'}]}>
+        <Text style={styles.item_text}>
+          {item.name} : {item.description}
+        </Text>
+      </View>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate(ScreenNames.videoView, {
+            videoId: getVideoId(item.path),
+            title: item.name + ':' + item.description,
+          });
+        }}
+        style={styles.learn_button}
+      >
+        <Text style={styles.button_text}>Vào học</Text>
+      </TouchableOpacity>
+    </View>
+  );
+
+  const renderSectionHeader = ({section}) => (
+    <View style={styles.sectionHeader}>
+      <Text style={[styles.sectionHeader_text, {width: '80%'}]}>
+        Phần {section.part} : {section.title}
+      </Text>
+      <Text style={[styles.sectionHeader_text, {fontSize: 16}]}>
+        {section.length} bài
+      </Text>
+    </View>
+  );
+
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
       <View style={styles.header}>
@@ -56,7 +122,7 @@ export default function CourseView({navigation, route, props}) {
         </View>
       </View>
       <View style={{height: '100%', width: '100%'}}>
-        <DemoYouTubePlayerView style={styles.demo_video} />
+        <DemoYouTubePlayerView videoId={videoId} style={styles.demo_video} />
 
         <View style={styles.course_info}>
           <ScrollView style={{height: '100%', width: '100%'}}>
@@ -105,26 +171,7 @@ export default function CourseView({navigation, route, props}) {
                 </Text>
               </TouchableOpacity>
             </View>
-            <View style={{width: '100%', height: 50, marginTop: 5}}>
-              <TouchableOpacity
-                style={{
-                  marginHorizontal: 20,
-                  backgroundColor: 'green',
-                  borderRadius: 5,
-                  height: ' 100%',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  display: 'flex',
-                  flexDirection: 'row',
-                }}
-              >
-                <Text
-                  style={{fontSize: 18, color: 'white', fontWeight: 'bold'}}
-                >
-                  THÊM VÀO GIỎ HÀNG
-                </Text>
-              </TouchableOpacity>
-            </View>
+
             <View
               style={{
                 width: '100%',
@@ -146,7 +193,9 @@ export default function CourseView({navigation, route, props}) {
                   size={20}
                   style={{width: 25}}
                 />
-                <Text style={{fontSize: 16, color: '#000000'}}>Thời lượng</Text>
+                <Text style={{fontSize: 16, color: '#000000'}}>
+                  Thời lượng : {minuteToHour(courseData.duration)}
+                </Text>
               </View>
               <View
                 style={{
@@ -223,11 +272,32 @@ export default function CourseView({navigation, route, props}) {
               </Text>
             </View>
             <Text style={{marginHorizontal: 20}}>{courseData.description}</Text>
-            <Text style={{marginHorizontal: 20}}>{courseData.description}</Text>
-
-            <Text style={{marginHorizontal: 20}}>{courseData.description}</Text>
-
-            <Text style={{marginHorizontal: 20}}>{courseData.description}</Text>
+            <SectionList
+              scrollEnabled={false}
+              sections={sections}
+              keyExtractor={item => item.id.toString()}
+              renderItem={renderItem}
+              renderSectionHeader={renderSectionHeader}
+              removeClippedSubviews={true}
+              ListFooterComponent={
+                <View
+                  style={{
+                    // backgroundColor: 'yellow',
+                    height: 50,
+                    width: '100%',
+                  }}
+                ></View>
+              }
+              ListHeaderComponent={
+                <View
+                  style={{
+                    // backgroundColor: 'yellow',
+                    height: 50,
+                    width: '100%',
+                  }}
+                ></View>
+              }
+            />
           </ScrollView>
         </View>
       </View>

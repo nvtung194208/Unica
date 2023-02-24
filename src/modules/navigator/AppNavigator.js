@@ -19,6 +19,7 @@ import CourseView from '../views/CourseView';
 import ListCourseView from '../views/ListCourseView';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
+import VideoView from '../views/VideoView';
 
 const Stack = createNativeStackNavigator();
 
@@ -86,6 +87,7 @@ export default AppNavigator = () => {
             component={ListCourseView}
           />
           <Stack.Screen name={ScreenNames.courseView} component={CourseView} />
+          <Stack.Screen name={ScreenNames.videoView} component={VideoView} />
         </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>

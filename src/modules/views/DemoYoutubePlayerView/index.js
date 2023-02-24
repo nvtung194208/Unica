@@ -6,11 +6,12 @@ export default function DemoYouTubePlayerView(props) {
   const [status, setStatus] = useState(null);
   const [quality, setQuality] = useState(null);
   const [error, setError] = useState(null);
+  const videoId = props.videoId;
   return (
     <SafeAreaView style={{flex: 1}}>
       <YouTube
         apiKey="AIzaSyC1AVRX9OTeAll2XR5SAqdL3xBngPlcuVE"
-        videoId="mfNWxURTJEA" // The YouTube video ID
+        videoId={videoId} // The YouTube video ID
         play={false} // control playback of video with true/false
         fullscreen={false} // control whether the video should play in fullscreen or inline
         loop // control whether the video should loop when ended

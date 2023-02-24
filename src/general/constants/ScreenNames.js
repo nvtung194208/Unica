@@ -23,4 +23,5 @@ export const ScreenNames = {
 
   courseView: 'CourseView',
   listCourseView: 'ListCourseView',
+  videoView: 'VideoView',
 };

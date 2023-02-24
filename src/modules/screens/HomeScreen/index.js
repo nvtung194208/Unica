@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState, memo} from 'react';
 import {
   View,
   SafeAreaView,
@@ -15,13 +15,25 @@ import {getPreference} from '../../../libs/storage/PreferenceStorage';
 import CategorySheet from './CategorySheet';
 import ListCourse from './ListCourse';
 import Slider from './Slider';
-export default function HomeScreen({navigation}) {
+
+const ViewedCourses = memo(({data, navigation}) => (
+  <ListCourse type="Khoá học đã xem" data={data} navigation={navigation} />
+));
+
+const FavoriteCourses = memo(({data, navigation}) => (
+  <ListCourse type="Khoá học đã thích" data={data} navigation={navigation} />
+));
+
+const AllCourses = memo(({data, navigation}) => (
+  <ListCourse type="Tất cả khoá học" data={data} navigation={navigation} />
+));
+
+function HomeScreen({navigation}) {
   const [allCourseData, setAllCourseData] = useState([]);
   const [favCourseData, setFavCourseData] = useState([]);
   const [viewedCourseData, setViewedCourseData] = useState([]);
+  const [dataLengths, setDataLengths] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [dataLengths, setDataLengths] = useState({all: 0, fav: 0, viewed: 0});
-  console.log('HomeScreen is rendering !!!!');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,24 +81,14 @@ export default function HomeScreen({navigation}) {
     <SafeAreaView>
       <ScrollView>
         <Slider></Slider>
-        <ListCourse
-          type="Khoá học đã xem"
-          data={viewedCourseData}
-          navigation={navigation}
-        />
+        <ViewedCourses data={viewedCourseData} navigation={navigation} />
         <ListCourse type="Dành riêng cho bạn " navigation={navigation} />
-        <ListCourse
-          type="Khoá học đã thích"
-          data={favCourseData}
-          navigation={navigation}
-        />
-        <ListCourse
-          type="Tất cả khoá học"
-          data={allCourseData}
-          navigation={navigation}
-        />
+        <FavoriteCourses data={favCourseData} navigation={navigation} />
+        <AllCourses data={allCourseData} navigation={navigation} />
         <CategorySheet navigation={navigation} />
       </ScrollView>
     </SafeAreaView>
   );
 }
+
+export default HomeScreen;

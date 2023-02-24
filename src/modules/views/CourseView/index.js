@@ -57,7 +57,7 @@ export default function CourseView({navigation, route, props}) {
             },
           );
           const data = await response.json();
-          if (data.ok) {
+          if (data.success) {
             console.log('Đã xem khoá học mới');
             setIsView(true);
           }

@@ -10,7 +10,7 @@ import {ScreenNames} from '../../../general/constants/ScreenNames';
 import {PreferenceKeys} from '../../../general/constants/Global';
 import {getPreference} from '../../../libs/storage/PreferenceStorage';
 export default function CourseView({navigation, route, props}) {
-  const {key, id, title, rate, image, price, status} = route.params;
+  const {key, id, title, rate, image, price} = route.params;
   const [isViewed, setIsView] = useState(false);
   const [isFavourited, setIsFavourited] = useState(false);
   const [isRegisted, setIsRegisted] = useState(false);
@@ -39,34 +39,34 @@ export default function CourseView({navigation, route, props}) {
     const fetchData = async () => {
       const userId = await getPreference(PreferenceKeys.UserId);
       const courseId = route.params.id;
-      console.log(status);
+      // console.log(status);
 
-      if (!status) {
-        try {
-          const response = await fetch(
-            'https://unica-production-3451.up.railway.app/api/course/view',
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                user_id: userId,
-                course_id: courseId,
-              }),
-            },
-          );
-          const data = await response.json();
-          if (data.success) {
-            console.log('Đã xem khoá học mới');
-            setIsView(true);
-          }
-        } catch (e) {
-          console.error(error);
-        }
-      } else {
-        setIsView(true);
-      }
+      // if (!status) {
+      //   try {
+      //     const response = await fetch(
+      //       'https://unica-production-3451.up.railway.app/api/course/view',
+      //       {
+      //         method: 'POST',
+      //         headers: {
+      //           'Content-Type': 'application/json',
+      //         },
+      //         body: JSON.stringify({
+      //           user_id: userId,
+      //           course_id: courseId,
+      //         }),
+      //       },
+      //     );
+      //     const data = await response.json();
+      //     if (data.success) {
+      //       console.log('Đã xem khoá học mới');
+      //       setIsView(true);
+      //     }
+      //   } catch (e) {
+      //     console.error(error);
+      //   }
+      // } else {
+      //   setIsView(true);
+      // }
 
       const promise1 = fetch(
         `https://unica-production-3451.up.railway.app/api/course/${courseId}`,

@@ -17,7 +17,6 @@ export default function CourseBox(props) {
           title: props.title,
           rate: props.rate,
           image: props.image,
-          status: props.status,
           price: numberWithDots(props.price),
         });
       }}

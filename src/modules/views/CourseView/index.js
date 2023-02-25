@@ -20,11 +20,11 @@ import {getPreference} from '../../../libs/storage/PreferenceStorage';
 export default function CourseView({navigation, route, props}) {
   const {key, id, title, rate, image, price} = route.params;
   const [isFavourited, setIsFavourited] = useState(0);
-  const [isRegisted, setIsRegisted] = useState(0);
+  const [isRegistered, setIsRegistered] = useState(0);
   const [courseData, setCourseData] = useState({});
   const [sectionData, setSectionData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  var registerCourseText = isRegisted ? 'Huỷ đăng ký' : 'Đăng ký học';
+  var registerCourseText = isRegistered ? 'Huỷ đăng ký' : 'Đăng ký học';
   function minuteToHour(minute) {
     var duration = '';
     if (minute < 0) return (duration = 0);
@@ -87,7 +87,7 @@ export default function CourseView({navigation, route, props}) {
       setSectionData(result1.data.parts);
       const findCourse = result3.data.find(course => course.id === id);
       setIsFavourited(findCourse.pivot.is_favo);
-      //setIsRegistered
+      setIsRegistered(findCourse.pivot.is_subcribe);
       setIsLoading(false);
     };
 
@@ -166,6 +166,37 @@ export default function CourseView({navigation, route, props}) {
     }
   };
 
+  const handleRegisteredPress = async () => {
+    const userId = await getPreference(PreferenceKeys.UserId);
+    try {
+      const response = await fetch(
+        'https://unica-production-3451.up.railway.app/api/course/subcribe',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_id: userId,
+            course_id: id,
+            is_subcribe: isRegistered ? 0 : 1,
+          }),
+        },
+      );
+      const data = await response.json();
+      if (response.ok) {
+        console.log(data);
+
+        setIsRegistered(data.data.is_subcribe);
+      } else {
+        // Handle error response from API
+      }
+    } catch (error) {
+      console.error(error);
+      // Handle error while making API call
+    }
+  };
+
   if (isLoading) {
     return <ActivityIndicator size="large" color="#0975b5" />;
   }
@@ -225,7 +256,7 @@ export default function CourseView({navigation, route, props}) {
                   alignItems: 'center',
                 }}
                 onPress={() => {
-                  setIsRegisted(!isRegisted);
+                  handleRegisteredPress();
                 }}
               >
                 <Text

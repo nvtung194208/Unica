@@ -32,7 +32,7 @@ export default function StudyingScreen(navigation) {
         .catch(error => console.error(error));
 
       const [result1] = await Promise.all([promise1]);
-      setListCourseData(Object.values(result1.data));
+      setListCourseData(result1.data);
       setIsLoading(false);
     };
     fetchData();

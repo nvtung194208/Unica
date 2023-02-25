@@ -61,11 +61,11 @@ function HomeScreen({navigation}) {
         promise3,
       ]);
       setAllCourseData(result1.data);
-      setFavCourseData(Object.values(result2.data));
+      setFavCourseData(result2.data);
       setViewedCourseData(result3.data);
       setDataLengths({
         all: result1.data.length,
-        fav: Object.values(result2.data).length,
+        fav: result2.data.length,
         viewed: result3.data.length,
       });
       setIsLoading(false);

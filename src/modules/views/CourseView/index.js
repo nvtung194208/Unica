@@ -1,4 +1,12 @@
-import {View, Text, SectionList, TouchableOpacity, Image} from 'react-native';
+import {
+  View,
+  Text,
+  SectionList,
+  TouchableOpacity,
+  Image,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 import {ScrollView} from 'react-native-virtualized-view';
 import {styles} from './style';
 import {useEffect, useState} from 'react';
@@ -15,6 +23,7 @@ export default function CourseView({navigation, route, props}) {
   const [isRegisted, setIsRegisted] = useState(0);
   const [courseData, setCourseData] = useState({});
   const [sectionData, setSectionData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   var registerCourseText = isRegisted ? 'Huỷ đăng ký' : 'Đăng ký học';
   function minuteToHour(minute) {
     var duration = '';
@@ -78,6 +87,8 @@ export default function CourseView({navigation, route, props}) {
       setSectionData(result1.data.parts);
       const findCourse = result3.data.find(course => course.id === id);
       setIsFavourited(findCourse.pivot.is_favo);
+      //setIsRegistered
+      setIsLoading(false);
     };
 
     fetchData();
@@ -124,6 +135,41 @@ export default function CourseView({navigation, route, props}) {
     </View>
   );
 
+  const handleFavouritedPress = async () => {
+    const userId = await getPreference(PreferenceKeys.UserId);
+    try {
+      const response = await fetch(
+        'https://unica-production-3451.up.railway.app/api/course/favo',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_id: userId,
+            course_id: id,
+            is_favo: isFavourited ? 0 : 1,
+          }),
+        },
+      );
+      const data = await response.json();
+      if (response.ok) {
+        console.log(data);
+
+        setIsFavourited(data.data.is_favo);
+      } else {
+        // Handle error response from API
+      }
+    } catch (error) {
+      console.error(error);
+      // Handle error while making API call
+    }
+  };
+
+  if (isLoading) {
+    return <ActivityIndicator size="large" color="#0975b5" />;
+  }
+
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
       <View style={styles.header}>
@@ -157,7 +203,7 @@ export default function CourseView({navigation, route, props}) {
                   <Text style={[styles.price, {fontSize: 24}]}>$</Text>
                 </View>
                 <TouchableOpacity
-                  onPress={() => setIsFavourited(isFavourited ? 0 : 1)}
+                  onPress={() => handleFavouritedPress()}
                   style={styles.heart_button}
                 >
                   <Icon

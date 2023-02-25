@@ -49,7 +49,7 @@ export default function ListCourse(props) {
 
       <FlatList
         horizontal={true}
-        data={props.data}
+        data={props.data && props.data.slice(0, 6)}
         renderItem={renderItem}
         keyExtractor={course => course.id}
         removeClippedSubviews={true}

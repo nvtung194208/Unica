@@ -47,7 +47,9 @@ function HomeScreen({navigation}) {
 
       const promise2 = fetch(
         `https://unica-production-3451.up.railway.app/api/course/list-favo/${userId}`,
-      ).then(response => response.json());
+      )
+        .then(response => response.json())
+        .catch(error => console.error(error));
 
       const promise3 = fetch(
         `https://unica-production-3451.up.railway.app/api/course/list-view/${userId}`,

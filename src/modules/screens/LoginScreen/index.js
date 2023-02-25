@@ -45,8 +45,8 @@ const LoginScreen = ({navigation}) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            email: 'tunglk27@gmail.com',
-            password: 'Tung2001',
+            email: 'admin@sample.com',
+            password: '123123123',
           }),
         },
       );

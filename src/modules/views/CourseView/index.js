@@ -11,12 +11,10 @@ import {PreferenceKeys} from '../../../general/constants/Global';
 import {getPreference} from '../../../libs/storage/PreferenceStorage';
 export default function CourseView({navigation, route, props}) {
   const {key, id, title, rate, image, price} = route.params;
-  const [isViewed, setIsView] = useState(false);
-  const [isFavourited, setIsFavourited] = useState(false);
-  const [isRegisted, setIsRegisted] = useState(false);
+  const [isFavourited, setIsFavourited] = useState(0);
+  const [isRegisted, setIsRegisted] = useState(0);
   const [courseData, setCourseData] = useState({});
   const [sectionData, setSectionData] = useState([]);
-  const [videoId, setVideoId] = useState('');
   var registerCourseText = isRegisted ? 'Huỷ đăng ký' : 'Đăng ký học';
   function minuteToHour(minute) {
     var duration = '';
@@ -38,45 +36,48 @@ export default function CourseView({navigation, route, props}) {
   useEffect(() => {
     const fetchData = async () => {
       const userId = await getPreference(PreferenceKeys.UserId);
-      const courseId = route.params.id;
-      // console.log(status);
-
-      // if (!status) {
-      //   try {
-      //     const response = await fetch(
-      //       'https://unica-production-3451.up.railway.app/api/course/view',
-      //       {
-      //         method: 'POST',
-      //         headers: {
-      //           'Content-Type': 'application/json',
-      //         },
-      //         body: JSON.stringify({
-      //           user_id: userId,
-      //           course_id: courseId,
-      //         }),
-      //       },
-      //     );
-      //     const data = await response.json();
-      //     if (data.success) {
-      //       console.log('Đã xem khoá học mới');
-      //       setIsView(true);
-      //     }
-      //   } catch (e) {
-      //     console.error(error);
-      //   }
-      // } else {
-      //   setIsView(true);
-      // }
-
+      console.log(userId);
       const promise1 = fetch(
-        `https://unica-production-3451.up.railway.app/api/course/${courseId}`,
+        `https://unica-production-3451.up.railway.app/api/course/${id}`,
       )
         .then(response => response.json())
         .catch(error => console.error(error));
 
-      const [result1] = await Promise.all([promise1]);
+      const promise2 = fetch(
+        'https://unica-production-3451.up.railway.app/api/course/view',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_id: userId,
+            course_id: id,
+          }),
+        },
+      )
+        .then(() => {
+          response => response.json();
+          return promise3;
+        })
+
+        .catch(error => console.error(error));
+
+      const promise3 = fetch(
+        `https://unica-production-3451.up.railway.app/api/course/list-view/${userId}`,
+      )
+        .then(response => response.json())
+        .catch(error => console.error(error));
+
+      const [result1, result2, result3] = await Promise.all([
+        promise1,
+        promise2,
+        promise3,
+      ]);
       setCourseData(result1.data);
       setSectionData(result1.data.parts);
+      const findCourse = result3.data.find(course => course.id === id);
+      setIsFavourited(findCourse.pivot.is_favo);
     };
 
     fetchData();
@@ -156,13 +157,13 @@ export default function CourseView({navigation, route, props}) {
                   <Text style={[styles.price, {fontSize: 24}]}>$</Text>
                 </View>
                 <TouchableOpacity
-                  onPress={() => setIsFavourited(!isFavourited)}
+                  onPress={() => setIsFavourited(isFavourited ? 0 : 1)}
                   style={styles.heart_button}
                 >
                   <Icon
                     name="heart"
                     size={26}
-                    color={isFavourited ? 'red' : 'white'}
+                    color={isFavourited === 1 ? 'red' : 'white'}
                   />
                 </TouchableOpacity>
               </View>

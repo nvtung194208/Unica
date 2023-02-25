@@ -12,7 +12,7 @@ import {TestCourses} from '../../../general/constants/TestCourses';
 import CourseBox from '../../components/CourseBox';
 export default function ListCourseView({navigation, route}) {
   const {title, data} = route.params;
-  console.log(data);
+  // console.log(data);
 
   const renderItem = ({item}) => (
     <CourseBox

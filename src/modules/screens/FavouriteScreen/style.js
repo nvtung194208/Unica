@@ -1,26 +1,6 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  //   tab_container: {
-  //     width: '100%',
-  //     marginTop: 300,
-  //     alignItems: 'center',
-  //   },
-  //   tab: {
-  //     width: '80%',
-  //     alignItems: 'center',
-  //     height: 40,
-  //     display: 'flex',
-  //     flexDirection: 'row',
-  //     justifyContent: 'space-between',
-  //   },
-  //   icon: {
-  //     color: 'black',
-  //   },
-  //   text: {
-  //     fontSize: 14,
-  //     color: 'black',
-  //   },
   header: {
     width: '100%',
     height: 50,
@@ -37,5 +17,9 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
     textAlign: 'center',
+  },
+  scrollView: {
+    flexGrow: 1,
+    justifyContent: 'space-around',
   },
 });

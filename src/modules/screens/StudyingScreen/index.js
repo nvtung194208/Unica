@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {Component, useEffect, useState, useCallback} from 'react';
 import {
   View,
   SafeAreaView,
@@ -10,32 +10,48 @@ import {
   ScrollView,
   FlatList,
   ActivityIndicator,
+  RefreshControl,
 } from 'react-native';
 import {styles} from './style';
 import {PreferenceKeys} from '../../../general/constants/Global';
 import {getPreference} from '../../../libs/storage/PreferenceStorage';
 import AppHeader from '../../components/AppHeader';
 import CourseBox from '../../components/CourseBox';
-export default function StudyingScreen(navigation) {
+export default function StudyingScreen({navigation}) {
   console.log('StudyingScreen is rendering !!!!');
   const [listCourseData, setListCourseData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [dataLengths, setDataLengths] = useState({});
+  const [refreshing, setRefreshing] = useState(false);
+
+  const fetchData = async () => {
+    const userId = await getPreference(PreferenceKeys.UserId);
+
+    const promise1 = fetch(
+      `https://unica-production-3451.up.railway.app/api/course/list-subcribe/${userId}`,
+    )
+      .then(response => response.json())
+      .catch(error => console.error(error));
+
+    const result1 = await Promise.resolve(promise1);
+    setListCourseData(result1.data);
+    setDataLengths({
+      subcribe: result1.data.length,
+    });
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const userId = await getPreference(PreferenceKeys.UserId);
-
-      const promise1 = fetch(
-        `https://unica-production-3451.up.railway.app/api/course/list-subcribe/${userId}`,
-      )
-        .then(response => response.json())
-        .catch(error => console.error(error));
-
-      const [result1] = await Promise.all([promise1]);
-      setListCourseData(result1.data);
-      setIsLoading(false);
-    };
     fetchData();
+  }, []);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    fetchData();
+
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
   }, []);
 
   if (isLoading) {
@@ -45,6 +61,7 @@ export default function StudyingScreen(navigation) {
   const renderItem = ({item}) => (
     <CourseBox
       key={item.id}
+      id={item.id}
       title={item.name}
       rate={item.rate}
       image={item.photo}
@@ -52,23 +69,26 @@ export default function StudyingScreen(navigation) {
       navigation={navigation}
     />
   );
+
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
       <View style={styles.header}>
         <Text style={styles.header_text}>Khoá học trọn đời</Text>
       </View>
-      <ScrollView horizontal={true} style={styles.courses_container}>
-        <FlatList
-          horizontal={false}
-          data={listCourseData}
-          renderItem={renderItem}
-          keyExtractor={course => course.id}
-          removeClippedSubviews={true}
-          maxToRenderPerBatch={6}
-          initialNumToRender={6}
-          numColumns={2}
-        />
-      </ScrollView>
+
+      <FlatList
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+        horizontal={false}
+        data={listCourseData}
+        renderItem={renderItem}
+        keyExtractor={course => course.id}
+        removeClippedSubviews={true}
+        maxToRenderPerBatch={6}
+        initialNumToRender={6}
+        numColumns={2}
+      />
     </View>
   );
 }

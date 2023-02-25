@@ -160,7 +160,7 @@ const RegisterScreen = ({navigation}) => {
             />
             <TouchableOpacity
               onPress={() => {
-                setPasswordVisibility(!isPasswordVisible);
+                togglePasswordVisibility();
               }}
             >
               <Ionicon
@@ -191,8 +191,8 @@ const RegisterScreen = ({navigation}) => {
               secureTextEntry={!isPasswordVisible}
             />
             <TouchableOpacity
-              on={() => {
-                setPasswordVisibility(!isPasswordVisible);
+              onPress={() => {
+                togglePasswordVisibility();
               }}
             >
               <Ionicon

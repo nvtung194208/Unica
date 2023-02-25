@@ -1,22 +1,53 @@
-import {View, Text, Button, TouchableOpacity, SafeAreaView} from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  TouchableOpacity,
+  SafeAreaView,
+  ActivityIndicator,
+} from 'react-native';
 import AppHeader from '../../components/AppHeader';
 import {styles} from './style';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Feather from 'react-native-vector-icons/Feather';
 import {TextInput} from 'react-native-paper';
-import React, {useState} from 'react';
-import DatePicker from 'react-native-date-picker';
+import React, {useState, useEffect} from 'react';
+import {getPreference} from '../../../libs/storage/PreferenceStorage';
+import {PreferenceKeys} from '../../../general/constants/Global';
 export default function UpdateProfileView({navigation}) {
   var iconSize = 25;
 
-  const [name, onChangeName] = useState('Nguyễn Việt Tùng');
-  const [email, onChangeEmail] = useState('tunglk27@gmail.com');
-  const [phoneNum, onChangePhoneNum] = useState('0947977023');
-  const [dob, onChangeDOB] = useState('16/10/2001');
+  const [name, onChangeName] = useState('');
+  const [email, onChangeEmail] = useState('');
+  const [phoneNum, onChangePhoneNum] = useState('');
+  const [dob, onChangeDOB] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [date, setDate] = useState(new Date());
-  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      const userId = await getPreference(PreferenceKeys.UserId);
+
+      const promise1 = fetch(
+        `https://unica-production-3451.up.railway.app/api/user/${userId}`,
+      )
+        .then(response => response.json())
+        .catch(error => console.error(error));
+
+      const [result1] = await Promise.all([promise1]);
+      onChangeName(result1.data.name);
+      onChangeEmail(result1.data.email);
+      onChangeDOB(result1.data.birthday);
+      onChangePhoneNum(result1.data.phone);
+
+      setIsLoading(false);
+    };
+    fetchData();
+  }, [name]);
+
+  if (isLoading) {
+    return <ActivityIndicator size="large" color="#0975b5" />;
+  }
 
   return (
     <SafeAreaView>

@@ -14,6 +14,7 @@ export default function ListCourse(props) {
       rate={item.rate}
       image={item.photo}
       price={item.price}
+      status={item.pivot}
       navigation={props.navigation}
     />
   );

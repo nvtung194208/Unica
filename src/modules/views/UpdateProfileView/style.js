@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     marginLeft: 20,
     marginVertical: 10,
+    color: '#000000',
   },
   tab: {
     borderBottomWidth: 1,
@@ -16,11 +17,12 @@ export const styles = StyleSheet.create({
 
   icon: {
     marginLeft: 20,
+    color: '#000000',
   },
   tab_text: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: 'black',
+    color: '#000000',
     marginLeft: 20,
   },
 

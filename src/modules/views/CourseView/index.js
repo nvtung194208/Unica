@@ -39,9 +39,9 @@ export default function CourseView({navigation, route, props}) {
     const fetchData = async () => {
       const userId = await getPreference(PreferenceKeys.UserId);
       const courseId = route.params.id;
-      // const is_seen = route.params.status.is_seen;
+      console.log(status);
 
-      if (!route.params.status) {
+      if (!status) {
         try {
           const response = await fetch(
             'https://unica-production-3451.up.railway.app/api/course/view',

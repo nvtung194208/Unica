@@ -25,6 +25,7 @@ export default function CourseView({navigation, route, props}) {
   const [sectionData, setSectionData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   var registerCourseText = isRegistered ? 'Huỷ đăng ký' : 'Đăng ký học';
+  var registerCourseColor = isRegistered ? '#FF0000' : '#38761d';
   function minuteToHour(minute) {
     var duration = '';
     if (minute < 0) return (duration = 0);
@@ -249,7 +250,7 @@ export default function CourseView({navigation, route, props}) {
               <TouchableOpacity
                 style={{
                   marginHorizontal: 20,
-                  backgroundColor: 'red',
+                  backgroundColor: registerCourseColor,
                   borderRadius: 5,
                   height: ' 100%',
                   justifyContent: 'center',
@@ -266,7 +267,6 @@ export default function CourseView({navigation, route, props}) {
                 </Text>
               </TouchableOpacity>
             </View>
-
             <View
               style={{
                 width: '100%',
@@ -371,32 +371,36 @@ export default function CourseView({navigation, route, props}) {
             >
               {courseData.description}
             </Text>
-            <SectionList
-              scrollEnabled={false}
-              sections={sections}
-              keyExtractor={item => item.id.toString()}
-              renderItem={renderItem}
-              renderSectionHeader={renderSectionHeader}
-              removeClippedSubviews={true}
-              ListFooterComponent={
-                <View
-                  style={{
-                    // backgroundColor: 'yellow',
-                    height: 50,
-                    width: '100%',
-                  }}
-                ></View>
-              }
-              ListHeaderComponent={
-                <View
-                  style={{
-                    // backgroundColor: 'yellow',
-                    height: 50,
-                    width: '100%',
-                  }}
-                ></View>
-              }
-            />
+            {isRegistered ? (
+              <SectionList
+                scrollEnabled={false}
+                sections={sections}
+                keyExtractor={item => item.id.toString()}
+                renderItem={renderItem}
+                renderSectionHeader={renderSectionHeader}
+                removeClippedSubviews={true}
+                ListFooterComponent={
+                  <View
+                    style={{
+                      // backgroundColor: 'yellow',
+                      height: 50,
+                      width: '100%',
+                    }}
+                  ></View>
+                }
+                ListHeaderComponent={
+                  <View
+                    style={{
+                      // backgroundColor: 'yellow',
+                      height: 50,
+                      width: '100%',
+                    }}
+                  ></View>
+                }
+              />
+            ) : (
+              <></>
+            )}
           </ScrollView>
         </View>
       </View>

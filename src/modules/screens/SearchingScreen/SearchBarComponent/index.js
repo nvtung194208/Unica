@@ -1,6 +1,6 @@
 import {View, Text, Keyboard} from 'react-native';
 import SearchBar from 'react-native-dynamic-search-bar';
-export default function SearchBarComponent() {
+export default function SearchBarComponent(value, onChangeText) {
   return (
     <>
       <View
@@ -16,10 +16,11 @@ export default function SearchBarComponent() {
           onClearPress={() => {
             Keyboard.dismiss();
           }}
-          onChangeText={text => console.log(text)}
-          style={{
-            backgroundColor: '#d4d2d2',
-          }}
+          // onChangeText={text => console.log(text)}
+          // style={{
+          //   backgroundColor: '#d4d2d2',
+          // }}
+          // value={value}
         />
       </View>
     </>

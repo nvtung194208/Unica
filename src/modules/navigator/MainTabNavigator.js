@@ -12,6 +12,7 @@ import {KeyboardAvoidingView} from 'react-native';
 import {View, Image} from 'react-native';
 
 const Tab = createBottomTabNavigator();
+
 export default function MainTabNavigator(props) {
   return (
     <Tab.Navigator

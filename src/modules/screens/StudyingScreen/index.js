@@ -1,4 +1,5 @@
 import React, {Component, useEffect, useState, useCallback} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
 import {
   View,
   SafeAreaView,
@@ -21,7 +22,6 @@ export default function StudyingScreen({navigation}) {
   console.log('StudyingScreen is rendering !!!!');
   const [listCourseData, setListCourseData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [dataLengths, setDataLengths] = useState({});
   const [refreshing, setRefreshing] = useState(false);
 
   const fetchData = async () => {
@@ -35,15 +35,17 @@ export default function StudyingScreen({navigation}) {
 
     const result1 = await Promise.resolve(promise1);
     setListCourseData(result1.data);
-    setDataLengths({
-      subcribe: result1.data.length,
-    });
+
     setIsLoading(false);
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    const unsubscribe = navigation.addListener('focus', () => {
+      fetchData();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);

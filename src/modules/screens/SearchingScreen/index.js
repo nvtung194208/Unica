@@ -67,31 +67,32 @@ export default function SearchingScreen({navigation}) {
   //     console.log(query);
   //   }
   // };
+  if (isLoading) {
+    return <ActivityIndicator size="large" color="#0975b5" />;
+  }
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.searchbar}>
-          <SearchBar
-            onChangeText={text => {
-              setQuery(text);
-              console.log(text);
-            }}
-          />
-        </View>
-        <FlatList
-          style={{marginHorizontal: 27.5}}
-          horizontal={false}
-          data={filterCourses()}
-          renderItem={renderItem}
-          keyExtractor={course => course.id}
-          removeClippedSubviews={true}
-          maxToRenderPerBatch={6}
-          initialNumToRender={6}
-          numColumns={2}
-          showsVerticalScrollIndicator={false}
-          ListFooterComponent={<CategoryList navigation={navigation} />}
+      <View style={styles.searchbar}>
+        <SearchBar
+          onChangeText={text => {
+            setQuery(text);
+            console.log(text);
+          }}
         />
-      </ScrollView>
+      </View>
+      <FlatList
+        style={{marginHorizontal: 27.5}}
+        horizontal={false}
+        data={filterCourses()}
+        renderItem={renderItem}
+        keyExtractor={course => course.id}
+        removeClippedSubviews={true}
+        maxToRenderPerBatch={6}
+        initialNumToRender={6}
+        numColumns={2}
+        showsVerticalScrollIndicator={false}
+        ListFooterComponent={<CategoryList navigation={navigation} />}
+      />
     </View>
   );
 }

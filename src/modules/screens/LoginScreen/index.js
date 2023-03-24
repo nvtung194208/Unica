@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  ActivityIndicator,
 } from 'react-native';
 import {styles} from './style';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
@@ -27,6 +28,8 @@ const LoginScreen = ({navigation}) => {
   );
   const [password, setPassword] = useState('');
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleEmailChange = text => {
     setEmail(text);
   };
@@ -35,7 +38,12 @@ const LoginScreen = ({navigation}) => {
     setPassword(text);
   };
 
+  const renderLoading = () => {
+    <ActivityIndicator size="large" color="#ffffff" />;
+  };
+
   const handleLoginPress = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(
         'https://unica-production-3451.up.railway.app/api/auth/login',
@@ -67,6 +75,7 @@ const LoginScreen = ({navigation}) => {
           } catch (error) {
             alert(error);
           }
+          setIsLoading(false);
           navigation.navigate(ScreenNames.mainTab);
         }
       } else {
@@ -85,12 +94,10 @@ const LoginScreen = ({navigation}) => {
   return (
     <ImageBackground
       source={require('../../../assets/images/login_background.jpg')}
-      style={styles.background}
-    >
+      style={styles.background}>
       <KeyboardAvoidingView
         style={styles.container}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <View style={styles.logoContainer}>
           <Image
             source={require('../../../assets/images/logo.png')}
@@ -142,9 +149,12 @@ const LoginScreen = ({navigation}) => {
           </View>
           <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={handleLoginPress}
-          >
-            <Text style={styles.buttonText}>Đăng nhập</Text>
+            onPress={handleLoginPress}>
+            {isLoading ? (
+              <ActivityIndicator size="large" color="#ffffff" />
+            ) : (
+              <Text style={styles.buttonText}>Đăng nhập</Text>
+            )}
           </TouchableOpacity>
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <TouchableOpacity
@@ -152,12 +162,10 @@ const LoginScreen = ({navigation}) => {
                 styles.buttonContainer,
                 {
                   backgroundColor: 'transparent',
-                  // backgroundColor: 'red',
                   width: '80%',
                 },
               ]}
-              onPress={handleRegisterPress}
-            >
+              onPress={handleRegisterPress}>
               <Text style={[styles.buttonText, {color: '#0975b5'}]}>
                 Bạn chưa có tài khoản ?
               </Text>

@@ -34,7 +34,10 @@ export default function FavouriteScreen({navigation}) {
       .catch(error => console.error(error));
 
     const result1 = await Promise.resolve(promise1);
-    setListCourseData(result1.data);
+
+    if (result1 && result1.data) {
+      setListCourseData(result1.data);
+    }
 
     setIsLoading(false);
   };

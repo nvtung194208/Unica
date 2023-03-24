@@ -17,15 +17,27 @@ import ListCourse from './ListCourse';
 import Slider from './Slider';
 
 const ViewedCourses = memo(({data, navigation}) => (
-  <ListCourse type="Khoá học đã xem" data={data} navigation={navigation} />
+  <ListCourse
+    type="Khoá học đã xem"
+    data={data ? data : []}
+    navigation={navigation}
+  />
 ));
 
 const FavoriteCourses = memo(({data, navigation}) => (
-  <ListCourse type="Khoá học đã thích" data={data} navigation={navigation} />
+  <ListCourse
+    type="Khoá học đã thích"
+    data={data ? data : []}
+    navigation={navigation}
+  />
 ));
 
 const AllCourses = memo(({data, navigation}) => (
-  <ListCourse type="Tất cả khoá học" data={data} navigation={navigation} />
+  <ListCourse
+    type="Tất cả khoá học"
+    data={data ? data : []}
+    navigation={navigation}
+  />
 ));
 
 function HomeScreen({navigation}) {
@@ -62,13 +74,21 @@ function HomeScreen({navigation}) {
         promise2,
         promise3,
       ]);
-      setAllCourseData(result1.data);
-      setFavCourseData(result2.data);
-      setViewedCourseData(result3.data);
+
+      if (result1 && result1.data) {
+        setAllCourseData(result1.data);
+      }
+      if (result2 && result2.data) {
+        setFavCourseData(result2.data);
+      }
+      if (result2 && result3.data) {
+        setViewedCourseData(result3.data);
+      }
+
       setDataLengths({
-        all: result1.data.length,
-        fav: result2.data.length,
-        viewed: result3.data.length,
+        all: result1.data ? result1.data.length : 0,
+        fav: result2.data ? result2.data.length : 0,
+        viewed: result3.data ? result3.data.length : 0,
       });
       setIsLoading(false);
     };
